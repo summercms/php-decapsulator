@@ -1,0 +1,2 @@
+# Decapsulator
+Decapsulating objects wrapper.
