@@ -1,0 +1,21 @@
+{
+    "name": "exorg/decapsulator",
+    "description": "Decapsulator",
+    "type": "library",
+    "keywords": [
+        "exorg",
+        "decapsulator"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "4.4.*"
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Decapsulator\\": "src/"
+        }
+    }
+}
