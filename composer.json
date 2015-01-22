@@ -13,9 +13,15 @@
     "require-dev": {
         "phpunit/PHPUnit": "4.4.*"
     },
-    "autoload-dev": {
+    "autoload": {
         "psr-0": {
             "Decapsulator\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Decapsulator\\": "tests/"
+        }
     }
 }
+
