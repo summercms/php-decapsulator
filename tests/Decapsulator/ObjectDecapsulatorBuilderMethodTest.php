@@ -150,6 +150,34 @@ class ObjectDecapsulatorBuilderMethodTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Call tested class instance public or non-public method with arguments.
+     *
+     * @param string $methodName
+     * @param mixed[] $arguments
+     * @return mixed
+     */
+    private function callDecapsulatorMethodWithArguments($methodName, $arguments)
+    {
+        $method = $this->decapsulatorReflection->getMethod($methodName);
+        $method->setAccessible(true);
+        $methodReturnedValue = $method->invokeArgs($this->decapsulator, $arguments);
+
+        return $methodReturnedValue;
+    }
+
+    /**
+     * Test setObject($object) method sets object property correctly.
+     */
+    public function testSetObjectSetsObjectCorrectly()
+    {
+        $this->callDecapsulatorMethodWithArguments('setObject', array($this->decapsulatedObject));
+
+        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+
+        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+    }
+
+    /**
      * Test setUpReflection() method sets reflection property correctly.
      */
     public function testSetUpReflectionSetsReflectionCorrectly()
