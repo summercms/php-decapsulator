@@ -40,6 +40,17 @@ class ObjectDecapsulator
     private $reflection;
 
     /**
+     * Set-up instance properties with object data.
+     *
+     * @param mixed $object
+     */
+    private function setUpWithObject($object)
+    {
+        $this->setObject($object);
+        $this->setUpReflection();
+    }
+
+    /**
      * Set decapsulated object.
      *
      * @param mixed $object

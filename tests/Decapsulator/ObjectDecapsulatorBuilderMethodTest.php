@@ -166,6 +166,30 @@ class ObjectDecapsulatorBuilderMethodTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test setUpWithObject($object) method sets object property correctly.
+     */
+    public function testSetUpWithObjectSetsObjectCorrectly()
+    {
+        $this->callDecapsulatorMethodWithArguments('setUpWithObject', array($this->decapsulatedObject));
+
+        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+
+        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+    }
+
+    /**
+     * Test setUpWithObject($object) method sets reflection property correctly.
+     */
+    public function testSetUpWithObjectSetsReflectionCorrectly()
+    {
+        $this->callDecapsulatorMethodWithArguments('setUpWithObject', array($this->decapsulatedObject));
+
+        $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
+
+        $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
+    }
+
+    /**
      * Test setObject($object) method sets object property correctly.
      */
     public function testSetObjectSetsObjectCorrectly()
