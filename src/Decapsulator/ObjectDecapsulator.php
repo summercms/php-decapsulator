@@ -40,6 +40,20 @@ class ObjectDecapsulator
     private $reflection;
 
     /**
+     * Create ObjectDecapsulator instance wrapped given object.
+     *
+     * @param mixed $object
+     * @return \Decapsulator\ObjectDecapsulator
+     */
+    private function createInstanceFromObject($object)
+    {
+        $objectDecapsulator = new self();
+        $objectDecapsulator->setUpWithObject($object);
+
+        return $objectDecapsulator;
+    }
+
+    /**
      * Set-up instance properties with object data.
      *
      * @param mixed $object

@@ -11,8 +11,10 @@
 
 namespace Decapsulator;
 
+use Decapsulator\AbstractObjectDecapsulatorBuilderMethodsTest;
+
 /**
- * ObjectDecapsulatorTest.
+ * ObjectDecapsulatorBuilderMethodTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -21,195 +23,56 @@ namespace Decapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class ObjectDecapsulatorBuilderMethodTest extends \PHPUnit_Framework_TestCase
+class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorBuilderMethodsTest
 {
-    /**
-     * Name of the decapsulated object class.
-     *
-     * @var string
-     */
-    const DECAPSULATED_OBJECT_CLASS_NAME = '\Decapsulator\DemoClass';
-
-    /**
-     * Decapsulated object.
-     * Instance of the fixture class.
-     *
-     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS_NAME
-     */
-    private $decapsulatedObject;
-
-    /**
-     * Reflection for the fixture class.
-     *
-     * @var \ReflectionClass
-     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS_NAME
-     */
-    private $decapsulatedObjectClassReflection;
-
-    /**
-     * Instance of tested class.
-     *
-     * @var ObjectDecapsulator
-     */
-    private $decapsulator;
-
-    /**
-     * Reflection for the testes class.
-     *
-     * @var \ReflectionClass
-     */
-    private $decapsulatorReflection;
-
-    /**
-     * Set up the fixtures and helpers.
-     * Called before a test is executed.
-     */
-    public function setUp()
-    {
-        $this->setUpDeapsulatedObjectClassReflection();
-        $this->setUpDecapsulatedObject();
-        $this->setUpDecapsulatorReflection();
-        $this->setUpDecapsulator();
-    }
-
-    /**
-     * Set up reflection for the fixture class.
-     */
-    private function setUpDeapsulatedObjectClassReflection()
-    {
-        $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
-        $this->decapsulatedObjectClassReflection = new \ReflectionClass($className);
-    }
-
-    /**
-     * Set up decapsulated object fixture.
-     */
-    private function setUpDecapsulatedObject()
-    {
-        $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
-        $this->decapsulatedObject = new $className();
-    }
-
-    /**
-     * Set up reflection for the tested class.
-     */
-    private function setUpDecapsulatorReflection()
-    {
-        $this->decapsulatorReflection = new \ReflectionClass('\Decapsulator\ObjectDecapsulator');
-    }
-
-    /**
-     * Set up instance of tested class.
-     */
-    private function setUpDecapsulator()
-    {
-        $this->decapsulator = $this->decapsulatorReflection->newInstance();
-    }
-
-    /**
-     * Set tested class instance public or non-public property.
-     *
-     * @param string $propertyName
-     * @return mixed
-     */
-    private function setDecapsulatorProperty($propertyName, $propertyValue)
-    {
-        $property = $this->decapsulatorReflection->getProperty($propertyName);
-        $property->setAccessible(true);
-        $property->setValue($this->decapsulator, $propertyValue);
-    }
-
     /**
      * Get tested class instance public or non-public property.
      *
+     * @param unknown $decapsulator
      * @param string $propertyName
      * @return mixed
      */
-    private function getDecapsulatorProperty($propertyName)
+    private function getDecapsulatorProperty($decapsulator, $propertyName)
     {
-        $property = $this->decapsulatorReflection->getProperty($propertyName);
+        $decapsulatorReflection = new \ReflectionClass('\Decapsulator\ObjectDecapsulator');
+
+        $property = $decapsulatorReflection->getProperty($propertyName);
         $property->setAccessible(true);
-        $propertyValue = $property->getValue($this->decapsulator);
+        $propertyValue = $property->getValue($decapsulator);
 
         return $propertyValue;
     }
 
     /**
-     * Call tested class instance public or non-public method with no arguments.
-     *
-     * @param string $methodName
-     * @return mixed
+     * Test createInstanceFromObjectSetsObject($object) method returns ObjectDecapsulator instance.
      */
-    private function callDecapsulatorMethodWithNoArguments($methodName)
+    public function testCreateInstanceFromObjectReturnsCorrectInstance()
     {
-        $method = $this->decapsulatorReflection->getMethod($methodName);
-        $method->setAccessible(true);
-        $methodReturnedValue = $method->invoke($this->decapsulator);
+        $decapsulator = $this->callDecapsulatorMethodWithArguments('createInstanceFromObject', array($this->decapsulatedObject));
 
-        return $methodReturnedValue;
+        $this->assertInstanceOf('\Decapsulator\ObjectDecapsulator', $decapsulator);
     }
 
     /**
-     * Call tested class instance public or non-public method with arguments.
-     *
-     * @param string $methodName
-     * @param mixed[] $arguments
-     * @return mixed
+     * Test createInstanceFromObjectSetsObject($object) method sets object property correctly.
      */
-    private function callDecapsulatorMethodWithArguments($methodName, $arguments)
+    public function testCreateInstanceFromObjectSetsObjectCorrectly()
     {
-        $method = $this->decapsulatorReflection->getMethod($methodName);
-        $method->setAccessible(true);
-        $methodReturnedValue = $method->invokeArgs($this->decapsulator, $arguments);
+        $decapsulator = $this->callDecapsulatorMethodWithArguments('createInstanceFromObject', array($this->decapsulatedObject));
 
-        return $methodReturnedValue;
-    }
-
-    /**
-     * Test setUpWithObject($object) method sets object property correctly.
-     */
-    public function testSetUpWithObjectSetsObjectCorrectly()
-    {
-        $this->callDecapsulatorMethodWithArguments('setUpWithObject', array($this->decapsulatedObject));
-
-        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+        $decapsulatorObject = $this->getDecapsulatorProperty($decapsulator, 'object');
 
         $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
     }
 
     /**
-     * Test setUpWithObject($object) method sets reflection property correctly.
+     * Test createInstanceFromObjectSetsObject($object) method sets reflection property correctly.
      */
-    public function testSetUpWithObjectSetsReflectionCorrectly()
+    public function testCreateInstanceFromObjectSetsReflectionCorrectly()
     {
-        $this->callDecapsulatorMethodWithArguments('setUpWithObject', array($this->decapsulatedObject));
+        $decapsulator = $this->callDecapsulatorMethodWithArguments('createInstanceFromObject', array($this->decapsulatedObject));
 
-        $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
-
-        $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
-    }
-
-    /**
-     * Test setObject($object) method sets object property correctly.
-     */
-    public function testSetObjectSetsObjectCorrectly()
-    {
-        $this->callDecapsulatorMethodWithArguments('setObject', array($this->decapsulatedObject));
-
-        $decapsulatorObject = $this->getDecapsulatorProperty('object');
-
-        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
-    }
-
-    /**
-     * Test setUpReflection() method sets reflection property correctly.
-     */
-    public function testSetUpReflectionSetsReflectionCorrectly()
-    {
-        $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
-        $this->callDecapsulatorMethodWithNoArguments('setUpReflection');
-
-        $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
+        $decapsulatorReflection = $this->getDecapsulatorProperty($decapsulator, 'reflection');
 
         $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
     }
