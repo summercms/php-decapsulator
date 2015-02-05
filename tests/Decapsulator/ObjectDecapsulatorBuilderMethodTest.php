@@ -76,4 +76,26 @@ class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorBuil
 
         $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
     }
+
+    /**
+     * Test objectIsValid($object) method returns false for argument of build-in type.
+     */
+    public function testObjectIsValidReturnsFalseForBuildinType()
+    {
+        $object = 4;
+
+        $methodReturnedValue = $this->callDecapsulatorMethodWithArguments('objectIsValid', array($object));
+
+        $this->assertFalse($methodReturnedValue);
+    }
+
+    /**
+     * Test objectIsValid($object) method returns true for argument being a class instance.
+     */
+    public function testObjectIsValidReturnsTrueForObject()
+    {
+        $methodReturnedValue = $this->callDecapsulatorMethodWithArguments('objectIsValid', array($this->decapsulatedObject));
+
+        $this->assertTrue($methodReturnedValue);
+    }
 }

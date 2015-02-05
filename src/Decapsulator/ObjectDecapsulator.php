@@ -26,6 +26,13 @@ namespace Decapsulator;
 class ObjectDecapsulator
 {
     /**
+     * Valid decapsulated object type.
+     *
+     * @var unknown
+     */
+    const VALID_OBJECT_TYPE = 'object';
+
+    /**
      * Decapsulated object.
      *
      * @var mixed
@@ -38,6 +45,20 @@ class ObjectDecapsulator
      * @var \ReflectionClass
      */
     private $reflection;
+
+    /**
+     * Check object is valid instance of the class.
+     *
+     * @param mixed $object
+     * @return bool
+     */
+    private function objectIsValid($object)
+    {
+        $objectType = gettype($object);
+        $objectIsValid = ($objectType === self::VALID_OBJECT_TYPE);
+
+        return $objectIsValid;
+    }
 
     /**
      * Create ObjectDecapsulator instance wrapped given object.
