@@ -47,6 +47,27 @@ class ObjectDecapsulator
     private $reflection;
 
     /**
+     * Build ObjectDecapsulator instance for given decapsulated object.
+     *
+     * @param mixed $object
+     * @throws \InvalidArgumentException
+     * @return \Decapsulator\ObjectDecapsulator
+     */
+    public function buildForObject($object)
+    {
+        if (self::objectIsValid($object)) {
+            $objectDecapsulator = self::createInstanceFromObject($object);
+
+            return $objectDecapsulator;
+        } else {
+            $message = 'Argument is not an object.';
+            $exception = new \InvalidArgumentException($message);
+
+            throw $exception;
+        }
+    }
+
+    /**
      * Check object is valid instance of the class.
      *
      * @param mixed $object

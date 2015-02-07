@@ -98,4 +98,51 @@ class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorBuil
 
         $this->assertTrue($methodReturnedValue);
     }
+
+    /**
+     * Test buildForObject($object) method throws InvalidObjectException when $object is not valid.
+     *
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Argument is not an object.
+     */
+    public function testBuildForObjectThrowsExceptionForNotValidObject()
+    {
+        $object = 4;
+
+        $methodReturnedValue = $this->callDecapsulatorMethodWithArguments('buildForObject', array($object));
+    }
+
+    /**
+     * Test buildForObject($object) method returns ObjectDecapsulatorInstance when $object id valid.
+     */
+    public function testBuildForObjectReturnsCorrectInstanceForValidObject()
+    {
+        $objectDecapsulator = $this->callDecapsulatorMethodWithArguments('buildForObject', array($this->decapsulatedObject));
+
+        $this->assertInstanceOf('Decapsulator\ObjectDecapsulator', $objectDecapsulator);
+    }
+
+    /**
+     * Test buildForObject($object) method sets object property correctly when $object id valid.
+     */
+    public function testBuildForObjectSetsObjectCorrectlyForValidObject()
+    {
+        $decapsulator = $this->callDecapsulatorMethodWithArguments('buildForObject', array($this->decapsulatedObject));
+
+        $decapsulatorObject = $this->getDecapsulatorProperty($decapsulator, 'object');
+
+        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+    }
+
+    /**
+     * Test buildForObject($object) method sets reflection property correctly when $object id valid.
+     */
+    public function testBuildForObjectSetsReflectionCorrectlyForValidObject()
+    {
+        $decapsulator = $this->callDecapsulatorMethodWithArguments('buildForObject', array($this->decapsulatedObject));
+
+        $decapsulatorReflection = $this->getDecapsulatorProperty($decapsulator, 'reflection');
+
+        $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
+    }
 }
