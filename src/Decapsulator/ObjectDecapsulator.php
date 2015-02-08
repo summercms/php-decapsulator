@@ -185,6 +185,21 @@ class ObjectDecapsulator
     }
 
     /**
+     * Check object method with given name exists.
+     *
+     * @param string $methodName
+     * @throws \UnexpectedValueException
+     * @return boolean
+     */
+    private function methodExists($methodName)
+    {
+        $objectClassName = get_class($this->object);
+        $methodExists = method_exists($this->object, $methodName);
+
+        return $methodExists;
+    }
+
+    /**
      * Set value of the given object property.
      *
      * @param string $propertyName

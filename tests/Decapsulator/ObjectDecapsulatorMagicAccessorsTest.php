@@ -11,10 +11,10 @@
 
 namespace Decapsulator;
 
-use Decapsulator\AbstractObjectDecapsulatorTest;
+use Decapsulator\AbstractObjectDecapsulatorMagicMethodsTest;
 
 /**
- * ObjectDecapsulatorMagicMethodsTest.
+ * ObjectDecapsulatorMagicAccessorsTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractObjectDecapsulatorTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
+class ObjectDecapsulatorMagicAccessorsTest extends AbstractObjectDecapsulatorMagicMethodsTest
 {
     /**
      * Names of the decapsulated object class properties.
@@ -48,7 +48,6 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
         parent::setUpDecapsulator();
 
         $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
-        $this->setUpDecapsualatedObjectOfDecapsulator();
     }
 
     /**
@@ -59,16 +58,6 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
         $reflectionProperty = $this->decapsulatorReflection->getProperty('reflection');
         $reflectionProperty->setAccessible(true);
         $reflectionProperty->setValue($this->decapsulator, $this->decapsulatedObjectReflection);
-    }
-
-    /**
-     * Set up decapsulated object instance property of tested class instance.
-     */
-    private function setUpDecapsualatedObjectOfDecapsulator()
-    {
-        $objectProperty = $this->decapsulatorReflection->getProperty('object');
-        $objectProperty->setAccessible(true);
-        $objectProperty->setValue($this->decapsulator, $this->decapsulatedObject);
     }
 
     /**
@@ -107,12 +96,12 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
     public function existingPropertiesNamesProvider()
     {
         $existingPropertiesNames = array(
-               array(self::PUBLIC_STATIC_PROPERTY_NAME),
-               array(self::PROTECTED_STATIC_PROPERTY_NAME),
-               array(self::PRIVATE_STATIC_PROPERTY_NAME),
-               array(self::PUBLIC_PROPERTY_NAME),
-               array(self::PROTECTED_PROPERTY_NAME),
-               array(self::PRIVATE_PROPERTY_NAME),
+            array(self::PUBLIC_STATIC_PROPERTY_NAME),
+            array(self::PROTECTED_STATIC_PROPERTY_NAME),
+            array(self::PRIVATE_STATIC_PROPERTY_NAME),
+            array(self::PUBLIC_PROPERTY_NAME),
+            array(self::PROTECTED_PROPERTY_NAME),
+            array(self::PRIVATE_PROPERTY_NAME),
         );
 
         return $existingPropertiesNames;

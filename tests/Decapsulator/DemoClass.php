@@ -70,7 +70,7 @@ class DemoClass
      *
      * @return string
      */
-    public function publicStaticMethodWithNoArgumnets()
+    public static function publicStaticMethodWithNoArguments()
     {
         return 'public:static:no-arguments';
     }
@@ -136,7 +136,7 @@ class DemoClass
      *
      * @return string
      */
-    public function publicMethodWithNoArgumnets()
+    public function publicMethodWithNoArguments()
     {
         return 'public:no-arguments';
     }
