@@ -68,6 +68,27 @@ class ObjectDecapsulator
     }
 
     /**
+     * Magically set object choosen property value.
+     * Called when property is set directly by the property name.
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
+     */
+    public function __set($propertyName, $propertyValue)
+    {
+        $propertyExists = $this->propertyExists($propertyName);
+
+        if ($propertyExists) {
+            $this->setProperty($propertyName, $propertyValue);
+        } else {
+            $message = 'Property does not exist.';
+            $exception = new \InvalidArgumentException($message);
+
+            throw $exception;
+        }
+    }
+
+    /**
      * Check object is valid instance of the class.
      *
      * @param mixed $object
