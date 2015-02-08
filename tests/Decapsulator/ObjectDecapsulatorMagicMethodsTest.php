@@ -191,7 +191,7 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
 
     /**
      * Test __set($propertyName, $propertyValue) magic method sets given property value correctly
-     * when the property does not exist.
+     * when the property exists.
      *
      * @dataProvider existingPropertiesNamesProvider
      * @param string $propertyName
@@ -202,6 +202,37 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
         $this->decapsulator->$propertyName = $expectedPropertyValue;
 
         $actualPropertyValue = $this->getDecapsulatedObjectProperty($propertyName);
+
+        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
+    }
+
+    /**
+     * Test __get($propertyName) magic method throws InvalidObjectException
+     * when the property does not exist.
+     *
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Property does not exist.
+     */
+    public function testMagicGetThrowsExceptionWhenPropertyDoesNotExist()
+    {
+        $propertyName = self::NONEXISTENT_PROPERTY_NAME;
+
+        $this->decapsulator->$propertyName;
+    }
+
+    /**
+     * Test __get($propertyName, $propertyValue) magic method gets property value correctly
+     * when the property exists.
+     *
+     * @dataProvider existingPropertiesNamesProvider
+     * @param string $propertyName
+     */
+    public function testMagicGetGetsPropertyCorrectlyWhenPropertyExists($propertyName)
+    {
+        $expectedPropertyValue =  4;
+        $this->setDecapsulatedObjectProperty($propertyName, $expectedPropertyValue);
+
+        $actualPropertyValue = $this->decapsulator->$propertyName;
 
         $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
     }

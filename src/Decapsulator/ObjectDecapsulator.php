@@ -89,6 +89,29 @@ class ObjectDecapsulator
     }
 
     /**
+     * Magically get object choosen property value.
+     * Called when property is get directly by the property name.
+     *
+     * @param string $propertyName
+     * @return mixed
+     */
+    public function __get($propertyName)
+    {
+        $propertyExists = $this->propertyExists($propertyName);
+
+        if ($propertyExists) {
+            $propertyValue = $this->getProperty($propertyName);
+
+            return $propertyValue;
+        } else {
+            $message = 'Property does not exist.';
+            $exception = new \InvalidArgumentException($message);
+
+            throw $exception;
+        }
+    }
+
+    /**
      * Check object is valid instance of the class.
      *
      * @param mixed $object
@@ -178,7 +201,7 @@ class ObjectDecapsulator
      * Get value of the given object property.
      *
      * @param string $propertyName
-     * @return mixed $propertyValue
+     * @return mixed
      */
     private function getProperty($propertyName)
     {
