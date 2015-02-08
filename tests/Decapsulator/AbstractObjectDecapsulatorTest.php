@@ -12,7 +12,7 @@
 namespace Decapsulator;
 
 /**
- * AbstractObjectDecapsulatorBuilderMethodsTest.
+ * AbstractObjectDecapsulatorTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -21,7 +21,7 @@ namespace Decapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractObjectDecapsulatorBuilderMethodsTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Name of the decapsulated object class.
@@ -29,6 +29,14 @@ abstract class AbstractObjectDecapsulatorBuilderMethodsTest extends \PHPUnit_Fra
      * @var string
      */
     const DECAPSULATED_OBJECT_CLASS_NAME = '\Decapsulator\DemoClass';
+
+    /**
+     * Reflection for the fixture class.
+     *
+     * @var \ReflectionClass
+     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS_NAME
+     */
+    protected $decapsulatedObjectReflection;
 
     /**
      * Decapsulated object.
@@ -39,12 +47,11 @@ abstract class AbstractObjectDecapsulatorBuilderMethodsTest extends \PHPUnit_Fra
     protected $decapsulatedObject;
 
     /**
-     * Reflection for the fixture class.
+     * Reflection for the testes class.
      *
      * @var \ReflectionClass
-     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS_NAME
      */
-    protected $decapsulatedObjectClassReflection;
+    protected $decapsulatorReflection;
 
     /**
      * Instance of tested class.
@@ -54,31 +61,24 @@ abstract class AbstractObjectDecapsulatorBuilderMethodsTest extends \PHPUnit_Fra
     protected $decapsulator;
 
     /**
-     * Reflection for the testes class.
-     *
-     * @var \ReflectionClass
-     */
-    protected $decapsulatorReflection;
-
-    /**
      * Set up the fixtures and helpers.
      * Called before a test is executed.
      */
     public function setUp()
     {
-        $this->setUpDeapsulatedObjectClassReflection();
+        $this->setUpDeapsulatedObjectReflection();
         $this->setUpDecapsulatedObject();
         $this->setUpDecapsulatorReflection();
         $this->setUpDecapsulator();
     }
 
     /**
-     * Set up reflection for the fixture class.
+     * Set up reflection for the decapsulated object fixture class.
      */
-    protected function setUpDeapsulatedObjectClassReflection()
+    protected function setUpDeapsulatedObjectReflection()
     {
         $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
-        $this->decapsulatedObjectClassReflection = new \ReflectionClass($className);
+        $this->decapsulatedObjectReflection = new \ReflectionClass($className);
     }
 
     /**

@@ -11,7 +11,7 @@
 
 namespace Decapsulator;
 
-use Decapsulator\AbstractObjectDecapsulatorBuilderMethodsTest;
+use Decapsulator\AbstractObjectDecapsulatorTest;
 
 /**
  * ObjectDecapsulatorMagicMethodsTest.
@@ -23,7 +23,7 @@ use Decapsulator\AbstractObjectDecapsulatorBuilderMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorBuilderMethodsTest
+class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
 {
     /**
      * Names of the decapsulated object class properties.
@@ -47,6 +47,25 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorBuild
     {
         parent::setUpDecapsulator();
 
+        $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
+        $this->setUpDecapsualatedObjectOfDecapsulator();
+    }
+
+    /**
+     * Set up decapsulated object reflection property of tested class instance.
+     */
+    private function setUpDecapsulatedObjectReflectionOfDecapsulator()
+    {
+        $reflectionProperty = $this->decapsulatorReflection->getProperty('reflection');
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($this->decapsulator, $this->decapsulatedObjectReflection);
+    }
+
+    /**
+     * Set up decapsulated object instance property of tested class instance.
+     */
+    private function setUpDecapsualatedObjectOfDecapsulator()
+    {
         $objectProperty = $this->decapsulatorReflection->getProperty('object');
         $objectProperty->setAccessible(true);
         $objectProperty->setValue($this->decapsulator, $this->decapsulatedObject);
@@ -109,5 +128,21 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorBuild
         $methodReturnedValue = $this->callDecapsulatorMethodWithArguments('propertyExists', array($propertyName));
 
         $this->assertTrue($methodReturnedValue);
+    }
+
+    /**
+     * Test setProperty($propertyName, $propertyValue) method sets given property value correctly.
+     *
+     * @dataProvider existingPropertiesNamesProvider
+     * @param string $propertyName
+     */
+    public function testSetPropertySetsPropertyCorrectly($propertyName)
+    {
+        $expectedPropertyValue = 1024;
+        $this->callDecapsulatorMethodWithArguments('setProperty', array($propertyName, $expectedPropertyValue));
+
+        $actualPropertyValue = $this->getDecapsulatedObjectProperty($propertyName);
+
+        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
     }
 }

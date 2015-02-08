@@ -11,7 +11,7 @@
 
 namespace Decapsulator;
 
-use Decapsulator\AbstractObjectDecapsulatorBuilderMethodsTest;
+use Decapsulator\AbstractObjectDecapsulatorTest;
 
 /**
  * ObjectDecapsulatorBuilderMethodTest.
@@ -23,7 +23,7 @@ use Decapsulator\AbstractObjectDecapsulatorBuilderMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorBuilderMethodsTest
+class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorTest
 {
     /**
      * Get tested class instance public or non-public property.
@@ -74,7 +74,7 @@ class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorBuil
 
         $decapsulatorReflection = $this->getDecapsulatorProperty($decapsulator, 'reflection');
 
-        $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
+        $this->assertEquals($this->decapsulatedObjectReflection, $decapsulatorReflection);
     }
 
     /**
@@ -143,6 +143,6 @@ class ObjectDecapsulatorBuilderMethodTest extends AbstractObjectDecapsulatorBuil
 
         $decapsulatorReflection = $this->getDecapsulatorProperty($decapsulator, 'reflection');
 
-        $this->assertEquals($this->decapsulatedObjectClassReflection, $decapsulatorReflection);
+        $this->assertEquals($this->decapsulatedObjectReflection, $decapsulatorReflection);
     }
 }

@@ -139,4 +139,17 @@ class ObjectDecapsulator
 
         return $propertyExists;
     }
+
+    /**
+     * Set value of the given object property.
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
+     */
+    private function setProperty($propertyName, $propertyValue)
+    {
+        $property = $this->reflection->getProperty($propertyName);
+        $property->setAccessible(true);
+        $property->setValue($this->object, $propertyValue);
+    }
 }
