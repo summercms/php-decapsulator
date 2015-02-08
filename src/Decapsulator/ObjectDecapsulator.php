@@ -124,4 +124,19 @@ class ObjectDecapsulator
         $className = get_class($this->object);
         $this->reflection = new \ReflectionClass($className);
     }
+
+    /**
+     * Check object property with given name exists.
+     *
+     * @param string $propertyName
+     * @throws \UnexpectedValueException
+     * @return boolean
+     */
+    private function propertyExists($propertyName)
+    {
+        $objectClassName = get_class($this->object);
+        $propertyExists = property_exists($objectClassName, $propertyName);
+
+        return $propertyExists;
+    }
 }
