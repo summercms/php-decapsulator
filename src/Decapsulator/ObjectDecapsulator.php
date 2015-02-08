@@ -173,4 +173,19 @@ class ObjectDecapsulator
         $property->setAccessible(true);
         $property->setValue($this->object, $propertyValue);
     }
+
+    /**
+     * Get value of the given object property.
+     *
+     * @param string $propertyName
+     * @return mixed $propertyValue
+     */
+    private function getProperty($propertyName)
+    {
+        $property = $this->reflection->getProperty($propertyName);
+        $property->setAccessible(true);
+        $propertyValue = $property->getValue($this->object);
+
+        return $propertyValue;
+    }
 }

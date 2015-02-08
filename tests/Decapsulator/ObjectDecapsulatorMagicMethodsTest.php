@@ -72,6 +72,19 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
     }
 
     /**
+     * Set decapsualted object public or non-public property.
+     *
+     * @param string $propertyName
+     * @param mixed $propertyValue
+     */
+    private function setDecapsulatedObjectProperty($propertyName, $propertyValue)
+    {
+        $property = $this->decapsulatedObjectReflection->getProperty($propertyName);
+        $property->setAccessible(true);
+        $property->setValue($this->decapsulatedObject, $propertyValue);
+    }
+
+    /**
      * Get decapsualted object public or non-public property.
      *
      * @param string $propertyName
@@ -142,6 +155,22 @@ class ObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
         $this->callDecapsulatorMethodWithArguments('setProperty', array($propertyName, $expectedPropertyValue));
 
         $actualPropertyValue = $this->getDecapsulatedObjectProperty($propertyName);
+
+        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
+    }
+
+    /**
+     * Test getProperty($propertyName) method gets property value correctly.
+     *
+     * @dataProvider existingPropertiesNamesProvider
+     * @param string $propertyName
+     */
+    public function testGetPropertyGetsPropertyCorrectly($propertyName)
+    {
+        $expectedPropertyValue = 1024;
+        $this->setDecapsulatedObjectProperty($propertyName, $expectedPropertyValue);
+
+        $actualPropertyValue = $this->callDecapsulatorMethodWithArguments('getProperty', array($propertyName));
 
         $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
     }
