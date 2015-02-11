@@ -92,7 +92,7 @@ class DemoClass
      */
     private static function privateStaticMethodWithNoArguments()
     {
-        return 'private:static:no-argumnts';
+        return 'private:static:no-arguments';
     }
 
     /**
@@ -104,7 +104,7 @@ class DemoClass
      */
     public static function publicStaticMethodWithArguments($argument1, $argument2)
     {
-        return 'public:static:' . $argument1 . '+' . $argument2;
+        return 'public:static:arguments:' . $argument1 . '+' . $argument2;
     }
 
     /**
@@ -116,7 +116,7 @@ class DemoClass
      */
     protected static function protectedStaticMethodWithArguments($argument1, $argument2)
     {
-        return 'protected:static:' . $argument1 . '+' . $argument2;
+        return 'protected:static:arguments:' . $argument1 . '+' . $argument2;
     }
 
     /**
@@ -128,7 +128,7 @@ class DemoClass
      */
     private static function privateStaticMethodWithArguments($argument1, $argument2)
     {
-        return 'private:static:' . $argument1 . '+' . $argument2;
+        return 'private:static:arguments:' . $argument1 . '+' . $argument2;
     }
 
     /**
@@ -158,7 +158,7 @@ class DemoClass
      */
     private function privateMethodWithNoArguments()
     {
-        return 'private:no-argumnts';
+        return 'private:no-arguments';
     }
 
     /**
@@ -170,7 +170,7 @@ class DemoClass
      */
     public function publicMethodWithArguments($argument1, $argument2)
     {
-        return 'public:' . $argument1 . '+' . $argument2;
+        return 'public:arguments:' . $argument1 . '+' . $argument2;
     }
 
     /**
@@ -182,7 +182,7 @@ class DemoClass
      */
     protected function protectedMethodWithArguments($argument1, $argument2)
     {
-        return 'protected:' . $argument1 . '+' . $argument2;
+        return 'protected:arguments:' . $argument1 . '+' . $argument2;
     }
 
     /**
@@ -194,6 +194,6 @@ class DemoClass
      */
     private function privateMethodWithArguments($argument1, $argument2)
     {
-        return 'private:' . $argument1 . '+' . $argument2;
+        return 'private:arguments:' . $argument1 . '+' . $argument2;
     }
 }

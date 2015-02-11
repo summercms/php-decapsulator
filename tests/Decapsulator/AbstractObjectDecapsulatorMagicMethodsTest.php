@@ -25,7 +25,7 @@ use Decapsulator\AbstractObjectDecapsulatorTest;
  */
 abstract class AbstractObjectDecapsulatorMagicMethodsTest extends AbstractObjectDecapsulatorTest
 {
-/**
+    /**
      * Set up instance of tested class.
      *
      * @see \Decapsulator\AbstractObjectDecapsulatorTest::setUpDecapsulator()

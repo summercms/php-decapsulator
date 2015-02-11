@@ -226,4 +226,20 @@ class ObjectDecapsulator
 
         return $propertyValue;
     }
+
+    /**
+     * Call given object method.
+     *
+     * @param string $methodName
+     * @param array[mixed] $methodArguments
+     * @return mixed
+     */
+    private function callMethod($methodName, $methodArguments = array())
+    {
+        $method = $this->reflection->getMethod($methodName);
+        $method->setAccessible(true);
+        $methodResult = $method->invokeArgs($this->object, $methodArguments);
+
+        return $methodResult;
+    }
 }

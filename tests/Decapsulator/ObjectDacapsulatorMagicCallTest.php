@@ -54,6 +54,7 @@ class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMet
         parent::setUpDecapsulator();
 
         $this->setUpDecapsualatedObjectOfDecapsulator();
+        $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
     }
 
     /**
@@ -79,7 +80,7 @@ class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMet
     /**
      * Provide existing methods names of the decapsulated object class.
      *
-     * @return array[string]
+     * @return array[array[string]]
      */
     public function existingMethodsNamesProvider()
     {
@@ -99,6 +100,106 @@ class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMet
         );
 
         return $existingPropertiesNames;
+    }
+
+    /**
+     * Provide methods with no arguments of the decapsulated object class
+     * and the values returned by these metods.
+     *
+     * @return array[array[string, string]]
+     */
+    public function noArgumentsMethodsNamesAndReturnedValuesProvider()
+    {
+        $noArgumentsMethodsNamesAndReturnedValues = array(
+            array(
+                self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                'public:static:no-arguments',
+            ),
+            array(
+                self::PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                'protected:static:no-arguments',
+            ),
+            array(
+                self::PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                'private:static:no-arguments',
+            ),
+            array(
+                self::PUBLIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                'public:no-arguments',
+            ),
+            array(
+                self::PROTECTED_METHOD_WITH_NO_ARGUMENTS_NAME,
+                'protected:no-arguments',
+            ),
+            array(
+                self::PRIVATE_METHOD_WITH_NO_ARGUMENTS_NAME,
+                'private:no-arguments',
+            ),
+        );
+
+        return $noArgumentsMethodsNamesAndReturnedValues;
+    }
+
+    /**
+     * Provide arguments methods names of the decapsulated object class
+     * and the values returned by these metods.
+     *
+     * @return array[array[string, array[string, string], string]]
+     */
+    public function argumentsMethodsNamesAndReturnedValuesProvider()
+    {
+        $argumentsMethodsNamesAndReturnedValues = array(
+            array(
+                self::PUBLIC_STATIC_METHOD_WITH_ARGUMENTS_NAME,
+                array(
+                    'arg1',
+                    'arg2',
+                ),
+                'public:static:arguments:arg1+arg2',
+            ),
+            array(
+                self::PROTECTED_STATIC_METHOD_WITH_ARGUMENTS_NAME,
+                array(
+                    'arg1',
+                    'arg2',
+                ),
+                'protected:static:arguments:arg1+arg2',
+            ),
+            array(
+                self::PRIVATE_STATIC_METHOD_WITH_ARGUMENTS_NAME,
+                array(
+                    'arg1',
+                    'arg2',
+                ),
+                'private:static:arguments:arg1+arg2',
+            ),
+            array(
+                self::PUBLIC_METHOD_WITH_ARGUMENTS_NAME,
+                array(
+                    'arg1',
+                    'arg2',
+                ),
+                'public:arguments:arg1+arg2',
+            ),
+            array(
+                self::PROTECTED_METHOD_WITH_ARGUMENTS_NAME,
+                array(
+                    'arg1',
+                    'arg2',
+                ),
+                'protected:arguments:arg1+arg2',
+            ),
+            array(
+                self::PRIVATE_METHOD_WITH_ARGUMENTS_NAME,
+                array(
+                    'arg1',
+                    'arg2',
+                ),
+                'private:arguments:arg1+arg2',
+            ),
+        );
+
+        return $argumentsMethodsNamesAndReturnedValues;
     }
 
     /**
@@ -124,5 +225,34 @@ class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMet
         $testedMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('methodExists', array($methodName));
 
         $this->assertTrue($testedMethodReturnedValue);
+    }
+
+    /**
+     * Test callMethod($methodName, $methodArguments) method calls method without argument correctly.
+     *
+     * @dataProvider noArgumentsMethodsNamesAndReturnedValuesProvider
+     * @param string $methodName
+     * @param string $expectedMethodReturnedValue
+     */
+    public function testCallMethodCallsMethodWithNoArgumentsCorrectly($methodName, $expectedMethodReturnedValue)
+    {
+        $actualMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('callMethod', array($methodName));
+
+        $this->assertEquals($expectedMethodReturnedValue, $actualMethodReturnedValue);
+    }
+
+    /**
+     * Test callMethod($methodName, $methodArguments) method calls method with arguments correctly.
+     *
+     * @dataProvider argumentsMethodsNamesAndReturnedValuesProvider
+     * @param string $methodName
+     * @param array[mixed] $methodArguments
+     * @param string $expectedMethodReturnedValue
+     */
+    public function testCallMethodCallsMethodWithArgumentsCorrectly($methodName, $methodArguments, $expectedMethodReturnedValue)
+    {
+        $actualMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('callMethod', array($methodName, array($methodArguments[0], $methodArguments[1])));
+
+        $this->assertEquals($expectedMethodReturnedValue, $actualMethodReturnedValue);
     }
 }
