@@ -112,6 +112,30 @@ class ObjectDecapsulator
     }
 
     /**
+     * Magically call object choosen method.
+     * Called when method is called directly by the method name.
+     *
+     * @param string $methodName
+     * @param array[mixed] $methodArguments
+     * @return mixed
+     */
+    public function __call($methodName, $methodArguments)
+    {
+        $methodExists = $this->methodExists($methodName);
+
+        if ($methodExists) {
+            $methodResult = $this->callMethod($methodName, $methodArguments);
+
+            return $methodResult;
+        } else {
+            $message = 'Method does not exist.';
+            $exception = new \InvalidArgumentException($message);
+
+            throw $exception;
+        }
+    }
+
+    /**
      * Check object is valid instance of the class.
      *
      * @param mixed $object
