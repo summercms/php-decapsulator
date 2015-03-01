@@ -53,7 +53,7 @@ class ObjectDecapsulator
      * @throws \InvalidArgumentException
      * @return \Decapsulator\ObjectDecapsulator
      */
-    public function buildForObject($object)
+    public static function buildForObject($object)
     {
         if (self::objectIsValid($object)) {
             $objectDecapsulator = self::createInstanceFromObject($object);
@@ -71,15 +71,15 @@ class ObjectDecapsulator
      * Magically set object choosen property value.
      * Called when property is set directly by the property name.
      *
-     * @param string $propertyName
-     * @param mixed $propertyValue
+     * @param string $name
+     * @param mixed  $value
      */
-    public function __set($propertyName, $propertyValue)
+    public function __set($name, $value)
     {
-        $propertyExists = $this->propertyExists($propertyName);
+        $propertyExists = $this->propertyExists($name);
 
         if ($propertyExists) {
-            $this->setProperty($propertyName, $propertyValue);
+            $this->setProperty($name, $value);
         } else {
             $message = 'Property does not exist.';
             $exception = new \InvalidArgumentException($message);
@@ -92,17 +92,17 @@ class ObjectDecapsulator
      * Magically get object choosen property value.
      * Called when property is get directly by the property name.
      *
-     * @param string $propertyName
+     * @param string $name
      * @return mixed
      */
-    public function __get($propertyName)
+    public function __get($name)
     {
-        $propertyExists = $this->propertyExists($propertyName);
+        $propertyExists = $this->propertyExists($name);
 
         if ($propertyExists) {
-            $propertyValue = $this->getProperty($propertyName);
+            $value = $this->getProperty($name);
 
-            return $propertyValue;
+            return $value;
         } else {
             $message = 'Property does not exist.';
             $exception = new \InvalidArgumentException($message);
@@ -115,18 +115,18 @@ class ObjectDecapsulator
      * Magically call object choosen method.
      * Called when method is called directly by the method name.
      *
-     * @param string $methodName
-     * @param array[mixed] $methodArguments
+     * @param string       $name
+     * @param array[mixed] $arguments
      * @return mixed
      */
-    public function __call($methodName, $methodArguments)
+    public function __call($name, $arguments)
     {
-        $methodExists = $this->methodExists($methodName);
+        $methodExists = $this->methodExists($name);
 
         if ($methodExists) {
-            $methodResult = $this->callMethod($methodName, $methodArguments);
+            $result = $this->callMethod($name, $arguments);
 
-            return $methodResult;
+            return $result;
         } else {
             $message = 'Method does not exist.';
             $exception = new \InvalidArgumentException($message);
@@ -141,7 +141,7 @@ class ObjectDecapsulator
      * @param mixed $object
      * @return bool
      */
-    private function objectIsValid($object)
+    private static function objectIsValid($object)
     {
         $objectType = gettype($object);
         $objectIsValid = ($objectType === self::VALID_OBJECT_TYPE);
@@ -155,7 +155,7 @@ class ObjectDecapsulator
      * @param mixed $object
      * @return \Decapsulator\ObjectDecapsulator
      */
-    private function createInstanceFromObject($object)
+    private static function createInstanceFromObject($object)
     {
         $objectDecapsulator = new self();
         $objectDecapsulator->setUpWithObject($object);
@@ -196,14 +196,14 @@ class ObjectDecapsulator
     /**
      * Check object property with given name exists.
      *
-     * @param string $propertyName
+     * @param string $name
      * @throws \UnexpectedValueException
      * @return boolean
      */
-    private function propertyExists($propertyName)
+    private function propertyExists($name)
     {
-        $objectClassName = get_class($this->object);
-        $propertyExists = property_exists($objectClassName, $propertyName);
+        $className = get_class($this->object);
+        $propertyExists = property_exists($className, $name);
 
         return $propertyExists;
     }
@@ -211,14 +211,13 @@ class ObjectDecapsulator
     /**
      * Check object method with given name exists.
      *
-     * @param string $methodName
+     * @param string $name
      * @throws \UnexpectedValueException
      * @return boolean
      */
-    private function methodExists($methodName)
+    private function methodExists($name)
     {
-        $objectClassName = get_class($this->object);
-        $methodExists = method_exists($this->object, $methodName);
+        $methodExists = method_exists($this->object, $name);
 
         return $methodExists;
     }
@@ -226,44 +225,44 @@ class ObjectDecapsulator
     /**
      * Set value of the given object property.
      *
-     * @param string $propertyName
-     * @param mixed $propertyValue
+     * @param string $name
+     * @param mixed $value
      */
-    private function setProperty($propertyName, $propertyValue)
+    private function setProperty($name, $value)
     {
-        $property = $this->reflection->getProperty($propertyName);
+        $property = $this->reflection->getProperty($name);
         $property->setAccessible(true);
-        $property->setValue($this->object, $propertyValue);
+        $property->setValue($this->object, $value);
     }
 
     /**
      * Get value of the given object property.
      *
-     * @param string $propertyName
+     * @param string $name
      * @return mixed
      */
-    private function getProperty($propertyName)
+    private function getProperty($name)
     {
-        $property = $this->reflection->getProperty($propertyName);
+        $property = $this->reflection->getProperty($name);
         $property->setAccessible(true);
-        $propertyValue = $property->getValue($this->object);
+        $value = $property->getValue($this->object);
 
-        return $propertyValue;
+        return $value;
     }
 
     /**
      * Call given object method.
      *
-     * @param string $methodName
-     * @param array[mixed] $methodArguments
+     * @param string       $name
+     * @param array[mixed] $arguments
      * @return mixed
      */
-    private function callMethod($methodName, $methodArguments = array())
+    private function callMethod($name, $arguments = array())
     {
-        $method = $this->reflection->getMethod($methodName);
+        $method = $this->reflection->getMethod($name);
         $method->setAccessible(true);
-        $methodResult = $method->invokeArgs($this->object, $methodArguments);
+        $result = $method->invokeArgs($this->object, $arguments);
 
-        return $methodResult;
+        return $result;
     }
 }

@@ -58,82 +58,170 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      *
      * @var ObjectDecapsulator
      */
-    protected $decapsulator;
+    protected $decapsulator = null;
 
     /**
-     * Set up the fixtures and helpers.
-     * Called before a test is executed.
+     * Call tested method and return result.
+     *
+     * @param string $arguments
+     * @return mixed
      */
-    public function setUp()
+    public function callTestedMethod($arguments = null)
     {
-        $this->setUpDeapsulatedObjectReflection();
-        $this->setUpDecapsulatedObject();
-        $this->setUpDecapsulatorReflection();
-        $this->setUpDecapsulator();
+        $result = $this->callDecapsulatorMethod($this->provideTestedMethodName(), $arguments);
+
+        return $result;
     }
 
     /**
-     * Set up reflection for the decapsulated object fixture class.
+     * Provide tested method name.
+     *
+     * @param string $name
      */
-    protected function setUpDeapsulatedObjectReflection()
+    protected function provideTestedMethodName()
+    {
+        return null;
+    }
+
+    /**
+     * Initialize reflection for the decapsulated object fixture class.
+     */
+    protected function initDeapsulatedObjectReflection()
     {
         $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
         $this->decapsulatedObjectReflection = new \ReflectionClass($className);
     }
 
     /**
-     * Set up decapsulated object fixture.
+     * Initialize decapsulated object fixture.
      */
-    protected function setUpDecapsulatedObject()
+    protected function initDecapsulatedObject()
     {
         $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
         $this->decapsulatedObject = new $className();
     }
 
     /**
-     * Set up reflection for the tested class.
+     * Initialize reflection for the tested class.
      */
-    protected function setUpDecapsulatorReflection()
+    protected function initDecapsulatorReflection()
     {
         $this->decapsulatorReflection = new \ReflectionClass('\Decapsulator\ObjectDecapsulator');
     }
 
     /**
-     * Set up instance of tested class.
+     * Initialize instance of tested class.
      */
-    protected function setUpDecapsulator()
+    protected function initDecapsulator()
     {
         $this->decapsulator = $this->decapsulatorReflection->newInstance();
     }
 
     /**
-     * Call tested class instance public or non-public method with no arguments.
+     * Set-up properties of tested class instance.
+     */
+    protected function setUpDecapsulator()
+    {
+        $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
+        $this->setUpDecapsualatedObjectOfDecapsulator();
+    }
+
+    /**
+     * Set tested class instance public or non-public property.
      *
-     * @param string $methodName
+     * @param string $name
      * @return mixed
      */
-    protected function callDecapsulatorMethodWithNoArguments($methodName)
+    protected function setDecapsulatorProperty($name, $value)
     {
-        $method = $this->decapsulatorReflection->getMethod($methodName);
-        $method->setAccessible(true);
-        $methodReturnedValue = $method->invoke($this->decapsulator);
+        $property = $this->decapsulatorReflection->getProperty($name);
+        $property->setAccessible(true);
+        $property->setValue($this->decapsulator, $value);
+    }
 
-        return $methodReturnedValue;
+    /**
+     * Get tested class instance public or non-public property.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    protected function getDecapsulatorProperty($name)
+    {
+        $property = $this->decapsulatorReflection->getProperty($name);
+        $property->setAccessible(true);
+        $value = $property->getValue($this->decapsulator);
+
+        return $value;
+    }
+
+    /**
+     * Call tested class instance public or non-public method.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    protected function callDecapsulatorMethod($name, $arguments = array())
+    {
+        $argumentsExist = !empty($arguments);
+
+        if ($argumentsExist) {
+            $returnedValue = $this->callDecapsulatorMethodWithArguments($name, $arguments);
+        } else {
+            $returnedValue = $this->callDecapsulatorMethodWithNoArguments($name);
+        }
+
+
+        return $returnedValue;
+    }
+
+    /**
+     * Set up decapsulated object reflection property of tested class instance.
+     */
+    private function setUpDecapsulatedObjectReflectionOfDecapsulator()
+    {
+        $reflectionProperty = $this->decapsulatorReflection->getProperty('reflection');
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($this->decapsulator, $this->decapsulatedObjectReflection);
+    }
+
+    /**
+     * Set up decapsulated object instance property of tested class instance.
+     */
+    private function setUpDecapsualatedObjectOfDecapsulator()
+    {
+        $objectProperty = $this->decapsulatorReflection->getProperty('object');
+        $objectProperty->setAccessible(true);
+        $objectProperty->setValue($this->decapsulator, $this->decapsulatedObject);
+    }
+
+    /**
+     * Call tested class instance public or non-public method with no arguments.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    private function callDecapsulatorMethodWithNoArguments($name)
+    {
+        $method = $this->decapsulatorReflection->getMethod($name);
+        $method->setAccessible(true);
+        $returnedValue = $method->invoke($this->decapsulator);
+
+        return $returnedValue;
     }
 
     /**
      * Call tested class instance public or non-public method with arguments.
      *
-     * @param string $methodName
+     * @param string $name
      * @param mixed[] $arguments
      * @return mixed
      */
-    protected function callDecapsulatorMethodWithArguments($methodName, $arguments)
+    private function callDecapsulatorMethodWithArguments($name, $arguments)
     {
-        $method = $this->decapsulatorReflection->getMethod($methodName);
+        $method = $this->decapsulatorReflection->getMethod($name);
         $method->setAccessible(true);
-        $methodReturnedValue = $method->invokeArgs($this->decapsulator, $arguments);
+        $returnedValue = $method->invokeArgs($this->decapsulator, $arguments);
 
-        return $methodReturnedValue;
+        return $returnedValue;
     }
 }
