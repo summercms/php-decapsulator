@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
 /**
  * DemoClass.

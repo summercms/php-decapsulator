@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractObjectDecapsulatorMagicMethodsTest;
+use Decapsulator\ObjectDecapsulator\AbstractObjectDecapsulatorTest;
 
 /**
- * ObjectDecapsulatorMagicMethodsTest.
+ * AbstractMethodAccessorsTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractObjectDecapsulatorMagicMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMethodsTest
+abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTest
 {
     /**
      * Names of fixture class methods.
@@ -45,36 +45,16 @@ class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMet
     const PRIVATE_METHOD_WITH_ARGUMENTS_NAME = 'privateMethodWithArguments';
 
     /**
-     * Set up instance of tested class.
-     *
-     * @see \Decapsulator\AbstractObjectDecapsulatorTest::setUpDecapsulator()
+     * Set up the fixtures and helpers.
+     * Called before a test is executed.
      */
-    public function setUpDecapsulator()
+    public function setUp()
     {
-        parent::setUpDecapsulator();
-
-        $this->setUpDecapsualatedObjectOfDecapsulator();
-        $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
-    }
-
-    /**
-     * Set up decapsulated object instance property of tested class instance.
-     */
-    private function setUpDecapsualatedObjectOfDecapsulator()
-    {
-        $objectProperty = $this->decapsulatorReflection->getProperty('object');
-        $objectProperty->setAccessible(true);
-        $objectProperty->setValue($this->decapsulator, $this->decapsulatedObject);
-    }
-
-    /**
-     * Set up decapsulated object reflection property of tested class instance.
-     */
-    private function setUpDecapsulatedObjectReflectionOfDecapsulator()
-    {
-        $reflectionProperty = $this->decapsulatorReflection->getProperty('reflection');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->decapsulator, $this->decapsulatedObjectReflection);
+        $this->initDeapsulatedObjectReflection();
+        $this->initDecapsulatedObject();
+        $this->initDecapsulatorReflection();
+        $this->initDecapsulator();
+        $this->setUpDecapsulator();
     }
 
     /**
@@ -200,104 +180,5 @@ class ObjectDecapsulatorMagicCallTest extends AbstractObjectDecapsulatorMagicMet
         );
 
         return $argumentsMethodsNamesAndReturnedValues;
-    }
-
-    /**
-     * Test methodExists($name) method returns false when the method does not exist.
-     */
-    public function testMethodExistsReturnsFalseWhenMethodDoesNotExist()
-    {
-        $methodName = self::NONEXISTENT_METHOD_NAME;
-
-        $testedMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('methodExists', array($methodName));
-
-        $this->assertFalse($testedMethodReturnedValue);
-    }
-
-    /**
-     * Test methodExists($name) method returns true when the method exists.
-     *
-     * @dataProvider existingMethodsNamesProvider
-     * @param string $methodName
-     */
-    public function testMethodExistsReturnsTrueWhenMethodExists($methodName)
-    {
-        $testedMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('methodExists', array($methodName));
-
-        $this->assertTrue($testedMethodReturnedValue);
-    }
-
-    /**
-     * Test callMethod($methodName, $methodArguments) method calls method without argument correctly.
-     *
-     * @dataProvider noArgumentsMethodsNamesAndReturnedValuesProvider
-     * @param string $methodName
-     * @param string $expectedMethodReturnedValue
-     */
-    public function testCallMethodCallsMethodWithNoArgumentsCorrectly($methodName, $expectedMethodReturnedValue)
-    {
-        $actualMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('callMethod', array($methodName));
-
-        $this->assertEquals($expectedMethodReturnedValue, $actualMethodReturnedValue);
-    }
-
-    /**
-     * Test callMethod($methodName, $methodArguments) method calls method with arguments correctly.
-     *
-     * @dataProvider argumentsMethodsNamesAndReturnedValuesProvider
-     * @param string $methodName
-     * @param array[mixed] $methodArguments
-     * @param string $expectedMethodReturnedValue
-     */
-    public function testCallMethodCallsMethodWithArgumentsCorrectly($methodName, $methodArguments, $expectedMethodReturnedValue)
-    {
-        $actualMethodReturnedValue = $this->callDecapsulatorMethodWithArguments('callMethod', array($methodName, array($methodArguments[0], $methodArguments[1])));
-
-        $this->assertEquals($expectedMethodReturnedValue, $actualMethodReturnedValue);
-    }
-
-    /**
-     * Test _call($methodName, $methodArguments) magic method throws InvalidObjectException
-     * when the called method does not exist.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Method does not exist.
-     */
-    public function testMagicCallThrowsExceptionWhenMethodDoesNotExist()
-    {
-        $methodName = self::NONEXISTENT_METHOD_NAME;
-
-        $this->decapsulator->$methodName(4);
-    }
-
-    /**
-     * Test _call($methodName, $methodArguments) magic method calls method with no arguments correctly
-     * when the property exists.
-     *
-     * @dataProvider noArgumentsMethodsNamesAndReturnedValuesProvider
-     * @param string $methodName
-     * @param string $expectedMethodReturnedValue
-     */
-    public function testMagicCallCallsMethodMethodWithNoArgumentsCorrectlyWhenMethodExists($methodName, $expectedMethodReturnedValue)
-    {
-        $actualMethodReturnedValue = $this->decapsulator->$methodName();
-
-        $this->assertEquals($expectedMethodReturnedValue, $actualMethodReturnedValue);
-    }
-
-    /**
-     * Test _call($methodName, $methodArguments) magic method calls method with arguments correctly
-     * when the property exists.
-     *
-     * @dataProvider argumentsMethodsNamesAndReturnedValuesProvider
-     * @param string $methodName
-     * @param array[mixed] $methodArguments
-     * @param string $expectedMethodReturnedValue
-     */
-    public function testMagicCallCallsMethodMethodWithArgumentsCorrectlyWhenMethodExists($methodName, $methodArguments, $expectedMethodReturnedValue)
-    {
-        $actualMethodReturnedValue = $this->decapsulator->$methodName($methodArguments[0], $methodArguments[1]);
-
-        $this->assertEquals($expectedMethodReturnedValue, $actualMethodReturnedValue);
     }
 }
