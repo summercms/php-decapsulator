@@ -64,9 +64,9 @@ class ObjectDecapsulator
     public static function buildForObject($object)
     {
         if (self::objectIsValid($object)) {
-            $objectDecapsulator = self::createInstanceFromObject($object);
+            $decapsulator = self::createInstanceFromObject($object);
 
-            return $objectDecapsulator;
+            return $decapsulator;
         } else {
             $message = 'Argument is not an object.';
             $exception = new \InvalidArgumentException($message);
@@ -165,10 +165,10 @@ class ObjectDecapsulator
      */
     private static function createInstanceFromObject($object)
     {
-        $objectDecapsulator = new self();
-        $objectDecapsulator->setUpWithObject($object);
+        $instance = new self();
+        $instance->setUpWithObject($object);
 
-        return $objectDecapsulator;
+        return $instance;
     }
 
     /**

@@ -39,13 +39,13 @@ class CallMethodTest extends AbstractMethodAccessorsTest
      * Test callMethod($name, $arguments) method
      * calls method without argument correctly.
      *
-     * @dataProvider noArgumentsMethodsNamesAndReturnedValuesProvider
-     * @param string $methodName
+     * @dataProvider noArgumentsMethodsAndReturnedValuesProvider
+     * @param string $method
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodWithNoArgumentsCorrectly($methodName, $expectedReturnedValue)
+    public function testCallsMethodWithNoArgumentsCorrectly($method, $expectedReturnedValue)
     {
-        $arguments = array($methodName);
+        $arguments = array($method);
 
         $actualReturnedValue = $this->callTestedMethod($arguments);
 
@@ -56,15 +56,15 @@ class CallMethodTest extends AbstractMethodAccessorsTest
      * Test callMethod($name, $arguments) method
      * calls method with arguments correctly.
      *
-     * @dataProvider argumentsMethodsNamesAndReturnedValuesProvider
-     * @param string       $methodName
+     * @dataProvider argumentsMethodsAndReturnedValuesProvider
+     * @param string       $method
      * @param array[mixed] $methodArguments
      * @param string       $expectedReturnedValue
      */
-    public function testMethodWithArgumentsCorrectly($methodName, $methodArguments, $expectedReturnedValue)
+    public function testCallsMethodWithArgumentsCorrectly($method, $methodArguments, $expectedReturnedValue)
     {
         $arguments = array(
-            $methodName,
+            $method,
             $methodArguments,
         );
 

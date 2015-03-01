@@ -44,9 +44,9 @@ class ObjectIsValidTest extends AbstractStaticMethodsTest
         $object = 4;
         $arguments = array($object);
 
-        $returnedValue = $this->callTestedMethod($arguments);
+        $objectIsValid = $this->callTestedMethod($arguments);
 
-        $this->assertFalse($returnedValue);
+        $this->assertFalse($objectIsValid);
     }
 
     /**
@@ -57,8 +57,8 @@ class ObjectIsValidTest extends AbstractStaticMethodsTest
     {
         $arguments = array($this->decapsulatedObject);
 
-        $returnedValue = $this->callTestedMethod($arguments);
+        $objectIsValid = $this->callTestedMethod($arguments);
 
-        $this->assertTrue($returnedValue);
+        $this->assertTrue($objectIsValid);
     }
 }

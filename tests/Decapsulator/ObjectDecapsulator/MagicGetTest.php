@@ -35,25 +35,25 @@ class MagicGetTest extends AbstractPropertyAccessorsTest
      */
     public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
-        $propertyName = self::NONEXISTENT_PROPERTY_NAME;
+        $property = self::NONEXISTENT_PROPERTY;
 
-        $this->decapsulator->$propertyName;
+        $this->decapsulator->$property;
     }
 
     /**
      * Test __get($name, $value) magic method
      * gets property value correctly.
      *
-     * @dataProvider existingPropertiesNamesProvider
-     * @param string $propertyName
+     * @dataProvider existingPropertiesProvider
+     * @param string $property
      */
-    public function testGetsPropertyCorrectly($propertyName)
+    public function testGetsPropertyCorrectly($property)
     {
-        $expectedPropertyValue =  4;
-        $this->setDecapsulatedObjectProperty($propertyName, $expectedPropertyValue);
+        $expectedValue =  4;
+        $this->setDecapsulatedObjectProperty($property, $expectedValue);
 
-        $actualPropertyValue = $this->decapsulator->$propertyName;
+        $actualValue = $this->decapsulator->$property;
 
-        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
+        $this->assertEquals($expectedValue, $actualValue);
     }
 }

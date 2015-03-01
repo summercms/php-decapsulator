@@ -30,19 +30,19 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @var unknown
      */
-    const NONEXISTENT_METHOD_NAME = 'nonexistentMethod';
-    const PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME = 'publicStaticMethodWithNoArguments';
-    const PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME = 'protectedStaticMethodWithNoArguments';
-    const PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME = 'privateStaticMethodWithNoArguments';
-    const PUBLIC_STATIC_METHOD_WITH_ARGUMENTS_NAME = 'publicStaticMethodWithArguments';
-    const PROTECTED_STATIC_METHOD_WITH_ARGUMENTS_NAME = 'protectedStaticMethodWithArguments';
-    const PRIVATE_STATIC_METHOD_WITH_ARGUMENTS_NAME = 'privateStaticMethodWithArguments';
-    const PUBLIC_METHOD_WITH_NO_ARGUMENTS_NAME = 'publicMethodWithNoArguments';
-    const PROTECTED_METHOD_WITH_NO_ARGUMENTS_NAME = 'protectedMethodWithNoArguments';
-    const PRIVATE_METHOD_WITH_NO_ARGUMENTS_NAME = 'privateMethodWithNoArguments';
-    const PUBLIC_METHOD_WITH_ARGUMENTS_NAME = 'publicMethodWithArguments';
-    const PROTECTED_METHOD_WITH_ARGUMENTS_NAME = 'protectedMethodWithArguments';
-    const PRIVATE_METHOD_WITH_ARGUMENTS_NAME = 'privateMethodWithArguments';
+    const NONEXISTENT_METHOD = 'nonexistentMethod';
+    const PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS = 'publicStaticMethodWithNoArguments';
+    const PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS = 'protectedStaticMethodWithNoArguments';
+    const PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS = 'privateStaticMethodWithNoArguments';
+    const PUBLIC_STATIC_METHOD_WITH_ARGUMENTS = 'publicStaticMethodWithArguments';
+    const PROTECTED_STATIC_METHOD_WITH_ARGUMENTS = 'protectedStaticMethodWithArguments';
+    const PRIVATE_STATIC_METHOD_WITH_ARGUMENTS = 'privateStaticMethodWithArguments';
+    const PUBLIC_METHOD_WITH_NO_ARGUMENTS = 'publicMethodWithNoArguments';
+    const PROTECTED_METHOD_WITH_NO_ARGUMENTS = 'protectedMethodWithNoArguments';
+    const PRIVATE_METHOD_WITH_NO_ARGUMENTS = 'privateMethodWithNoArguments';
+    const PUBLIC_METHOD_WITH_ARGUMENTS = 'publicMethodWithArguments';
+    const PROTECTED_METHOD_WITH_ARGUMENTS = 'protectedMethodWithArguments';
+    const PRIVATE_METHOD_WITH_ARGUMENTS = 'privateMethodWithArguments';
 
     /**
      * Set up the fixtures and helpers.
@@ -62,24 +62,24 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @return array[array[string]]
      */
-    public function existingMethodsNamesProvider()
+    public function existingMethodsProvider()
     {
-        $existingPropertiesNames = array(
-            array(self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME),
-            array(self::PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME),
-            array(self::PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME),
-            array(self::PUBLIC_STATIC_METHOD_WITH_ARGUMENTS_NAME),
-            array(self::PROTECTED_STATIC_METHOD_WITH_ARGUMENTS_NAME),
-            array(self::PRIVATE_STATIC_METHOD_WITH_ARGUMENTS_NAME),
-            array(self::PUBLIC_METHOD_WITH_NO_ARGUMENTS_NAME),
-            array(self::PROTECTED_METHOD_WITH_NO_ARGUMENTS_NAME),
-            array(self::PRIVATE_METHOD_WITH_NO_ARGUMENTS_NAME),
-            array(self::PUBLIC_METHOD_WITH_ARGUMENTS_NAME),
-            array(self::PROTECTED_METHOD_WITH_ARGUMENTS_NAME),
-            array(self::PRIVATE_METHOD_WITH_ARGUMENTS_NAME),
+        $existingProperties = array(
+            array(self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS),
+            array(self::PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS),
+            array(self::PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS),
+            array(self::PUBLIC_STATIC_METHOD_WITH_ARGUMENTS),
+            array(self::PROTECTED_STATIC_METHOD_WITH_ARGUMENTS),
+            array(self::PRIVATE_STATIC_METHOD_WITH_ARGUMENTS),
+            array(self::PUBLIC_METHOD_WITH_NO_ARGUMENTS),
+            array(self::PROTECTED_METHOD_WITH_NO_ARGUMENTS),
+            array(self::PRIVATE_METHOD_WITH_NO_ARGUMENTS),
+            array(self::PUBLIC_METHOD_WITH_ARGUMENTS),
+            array(self::PROTECTED_METHOD_WITH_ARGUMENTS),
+            array(self::PRIVATE_METHOD_WITH_ARGUMENTS),
         );
 
-        return $existingPropertiesNames;
+        return $existingProperties;
     }
 
     /**
@@ -88,36 +88,36 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @return array[array[string, string]]
      */
-    public function noArgumentsMethodsNamesAndReturnedValuesProvider()
+    public function noArgumentsMethodsAndReturnedValuesProvider()
     {
-        $noArgumentsMethodsNamesAndReturnedValues = array(
+        $noArgumentsMethodsAndReturnedValues = array(
             array(
-                self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS,
                 'public:static:no-arguments',
             ),
             array(
-                self::PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                self::PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS,
                 'protected:static:no-arguments',
             ),
             array(
-                self::PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                self::PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS,
                 'private:static:no-arguments',
             ),
             array(
-                self::PUBLIC_METHOD_WITH_NO_ARGUMENTS_NAME,
+                self::PUBLIC_METHOD_WITH_NO_ARGUMENTS,
                 'public:no-arguments',
             ),
             array(
-                self::PROTECTED_METHOD_WITH_NO_ARGUMENTS_NAME,
+                self::PROTECTED_METHOD_WITH_NO_ARGUMENTS,
                 'protected:no-arguments',
             ),
             array(
-                self::PRIVATE_METHOD_WITH_NO_ARGUMENTS_NAME,
+                self::PRIVATE_METHOD_WITH_NO_ARGUMENTS,
                 'private:no-arguments',
             ),
         );
 
-        return $noArgumentsMethodsNamesAndReturnedValues;
+        return $noArgumentsMethodsAndReturnedValues;
     }
 
     /**
@@ -126,11 +126,11 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @return array[array[string, array[string, string], string]]
      */
-    public function argumentsMethodsNamesAndReturnedValuesProvider()
+    public function argumentsMethodsAndReturnedValuesProvider()
     {
-        $argumentsMethodsNamesAndReturnedValues = array(
+        $argumentsMethodsAndReturnedValues = array(
             array(
-                self::PUBLIC_STATIC_METHOD_WITH_ARGUMENTS_NAME,
+                self::PUBLIC_STATIC_METHOD_WITH_ARGUMENTS,
                 array(
                     'arg1',
                     'arg2',
@@ -138,7 +138,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
                 'public:static:arguments:arg1+arg2',
             ),
             array(
-                self::PROTECTED_STATIC_METHOD_WITH_ARGUMENTS_NAME,
+                self::PROTECTED_STATIC_METHOD_WITH_ARGUMENTS,
                 array(
                     'arg1',
                     'arg2',
@@ -146,7 +146,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
                 'protected:static:arguments:arg1+arg2',
             ),
             array(
-                self::PRIVATE_STATIC_METHOD_WITH_ARGUMENTS_NAME,
+                self::PRIVATE_STATIC_METHOD_WITH_ARGUMENTS,
                 array(
                     'arg1',
                     'arg2',
@@ -154,7 +154,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
                 'private:static:arguments:arg1+arg2',
             ),
             array(
-                self::PUBLIC_METHOD_WITH_ARGUMENTS_NAME,
+                self::PUBLIC_METHOD_WITH_ARGUMENTS,
                 array(
                     'arg1',
                     'arg2',
@@ -162,7 +162,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
                 'public:arguments:arg1+arg2',
             ),
             array(
-                self::PROTECTED_METHOD_WITH_ARGUMENTS_NAME,
+                self::PROTECTED_METHOD_WITH_ARGUMENTS,
                 array(
                     'arg1',
                     'arg2',
@@ -170,7 +170,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
                 'protected:arguments:arg1+arg2',
             ),
             array(
-                self::PRIVATE_METHOD_WITH_ARGUMENTS_NAME,
+                self::PRIVATE_METHOD_WITH_ARGUMENTS,
                 array(
                     'arg1',
                     'arg2',
@@ -179,6 +179,6 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
             ),
         );
 
-        return $argumentsMethodsNamesAndReturnedValues;
+        return $argumentsMethodsAndReturnedValues;
     }
 }

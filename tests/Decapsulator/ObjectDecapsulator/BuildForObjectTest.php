@@ -57,9 +57,9 @@ class BuildForObjectTest extends AbstractStaticMethodsTest
      */
     public function testReturnsCorrectInstanceForValidObject()
     {
-        $objectDecapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
+        $decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
 
-        $this->assertInstanceOf('Decapsulator\ObjectDecapsulator', $objectDecapsulator);
+        $this->assertInstanceOf('Decapsulator\ObjectDecapsulator', $decapsulator);
     }
 
     /**
@@ -70,9 +70,9 @@ class BuildForObjectTest extends AbstractStaticMethodsTest
     {
         $this->decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
 
-        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+        $object = $this->getDecapsulatorProperty('object');
 
-        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+        $this->assertSame($this->decapsulatedObject, $object);
     }
 
     /**
@@ -83,8 +83,8 @@ class BuildForObjectTest extends AbstractStaticMethodsTest
     {
         $this->decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
 
-        $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
+        $reflection = $this->getDecapsulatorProperty('reflection');
 
-        $this->assertEquals($this->decapsulatedObjectReflection, $decapsulatorReflection);
+        $this->assertEquals($this->decapsulatedObjectReflection, $reflection);
     }
 }

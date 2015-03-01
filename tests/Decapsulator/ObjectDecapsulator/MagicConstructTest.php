@@ -31,8 +31,8 @@ class MagicConstructTest extends AbstractPropertyAccessorsTest
      */
     public function testIsNotAvailable()
     {
-        $available = $this->decapsulatorReflection->isInstantiable();
+        $isAvailable = $this->decapsulatorReflection->isInstantiable();
 
-        $this->assertFalse($available);
+        $this->assertFalse($isAvailable);
     }
 }

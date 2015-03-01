@@ -28,13 +28,13 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      *
      * @var string
      */
-    const DECAPSULATED_OBJECT_CLASS_NAME = '\Decapsulator\ObjectDecapsulator\DemoClass';
+    const DECAPSULATED_OBJECT_CLASS = '\Decapsulator\ObjectDecapsulator\DemoClass';
 
     /**
      * Reflection for the fixture class.
      *
      * @var \ReflectionClass
-     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS_NAME
+     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS
      */
     protected $decapsulatedObjectReflection;
 
@@ -42,7 +42,7 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      * Decapsulated object.
      * Instance of the fixture class.
      *
-     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS_NAME
+     * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS
      */
     protected $decapsulatedObject;
 
@@ -88,8 +88,8 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     protected function initDeapsulatedObjectReflection()
     {
-        $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
-        $this->decapsulatedObjectReflection = new \ReflectionClass($className);
+        $class = self::DECAPSULATED_OBJECT_CLASS;
+        $this->decapsulatedObjectReflection = new \ReflectionClass($class);
     }
 
     /**
@@ -97,8 +97,8 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     protected function initDecapsulatedObject()
     {
-        $className = self::DECAPSULATED_OBJECT_CLASS_NAME;
-        $this->decapsulatedObject = new $className();
+        $class = self::DECAPSULATED_OBJECT_CLASS;
+        $this->decapsulatedObject = new $class();
     }
 
     /**
@@ -106,7 +106,8 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     protected function initDecapsulatorReflection()
     {
-        $this->decapsulatorReflection = new \ReflectionClass('\Decapsulator\ObjectDecapsulator');
+        $class = '\Decapsulator\ObjectDecapsulator';
+        $this->decapsulatorReflection = new \ReflectionClass($class);
     }
 
     /**
@@ -170,7 +171,6 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
             $returnedValue = $this->callDecapsulatorMethodWithNoArguments($name);
         }
 
-
         return $returnedValue;
     }
 
@@ -179,9 +179,7 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     private function setUpDecapsulatedObjectReflectionOfDecapsulator()
     {
-        $reflectionProperty = $this->decapsulatorReflection->getProperty('reflection');
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($this->decapsulator, $this->decapsulatedObjectReflection);
+        $this->setDecapsulatorProperty('reflection', $this->decapsulatedObjectReflection);
     }
 
     /**
@@ -189,9 +187,7 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     private function setUpDecapsualatedObjectOfDecapsulator()
     {
-        $objectProperty = $this->decapsulatorReflection->getProperty('object');
-        $objectProperty->setAccessible(true);
-        $objectProperty->setValue($this->decapsulator, $this->decapsulatedObject);
+        $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
     }
 
     /**
