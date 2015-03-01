@@ -114,7 +114,7 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     protected function initDecapsulator()
     {
-        $this->decapsulator = $this->decapsulatorReflection->newInstance();
+        $this->decapsulator = $this->decapsulatorReflection->newInstanceWithoutConstructor();
     }
 
     /**

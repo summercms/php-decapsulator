@@ -47,6 +47,14 @@ class ObjectDecapsulator
     private $reflection;
 
     /**
+     * Constructor not available for public usage.
+     */
+    private function __construct()
+    {
+        // Default action.
+    }
+
+    /**
      * Build ObjectDecapsulator instance for given decapsulated object.
      *
      * @param mixed $object
