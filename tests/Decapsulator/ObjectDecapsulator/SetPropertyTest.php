@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractNonStaticMethodsTest;
+use Decapsulator\ObjectDecapsulator\AbstractPropertyAccessorsTest;
 
 /**
- * SetObjectTest.
+ * SetPropertyTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractNonStaticMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class SetObjectTest extends AbstractNonStaticMethodsTest
+class SetPropertyTest extends AbstractPropertyAccessorsTest
 {
     /**
      * Provide tested method name.
@@ -32,21 +32,29 @@ class SetObjectTest extends AbstractNonStaticMethodsTest
      */
     protected function provideTestedMethodName()
     {
-        return 'setObject';
+        return 'setProperty';
     }
 
     /**
-     * Test setObject($object) method
-     * sets object property correctly.
+     * Test setProperty($name, $value) method
+     * sets given property value correctly.
+     *
+     * @dataProvider existingPropertiesNamesProvider
+     * @param string $propertyName
      */
-    public function testSetObjectSetsObjectCorrectly()
+    public function testSetsPropertyCorrectly($propertyName)
     {
-        $arguments = array($this->decapsulatedObject);
+        $expectedPropertyValue = 1024;
+
+        $arguments = array(
+            $propertyName,
+            $expectedPropertyValue,
+        );
 
         $this->callTestedMethod($arguments);
 
-        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+        $actualPropertyValue = $this->getDecapsulatedObjectProperty($propertyName);
 
-        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
     }
 }

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractPropertyAccessorsTest;
+use Decapsulator\ObjectDecapsulator\AbstractPropertyAccessorsTest;
 
 /**
  * MagicGetTest.

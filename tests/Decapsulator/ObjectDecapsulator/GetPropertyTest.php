@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractPropertyAccessorsTest;
+use Decapsulator\ObjectDecapsulator\AbstractPropertyAccessorsTest;
 
 /**
- * PropertyExistsTest.
+ * GetPropertyTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractPropertyAccessorsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class PropertyExistsTest extends AbstractPropertyAccessorsTest
+class GetPropertyTest extends AbstractPropertyAccessorsTest
 {
     /**
      * Provide tested method name.
@@ -32,35 +32,25 @@ class PropertyExistsTest extends AbstractPropertyAccessorsTest
      */
     protected function provideTestedMethodName()
     {
-        return 'propertyExists';
+        return 'getProperty';
     }
 
     /**
-     * Test propertyExists($name) method
-     * returns false when the property does not exist.
-     */
-    public function testReturnsFalseWhenPropertyDoesNotExist()
-    {
-        $arguments = array(self::NONEXISTENT_PROPERTY_NAME);
-
-        $methodReturnedValue = $this->callTestedMethod($arguments);
-
-        $this->assertFalse($methodReturnedValue);
-    }
-
-    /**
-     * Test propertyExists($name) method
-     * returns true when the property exists.
+     * Test getProperty($name) method
+     * gets property value correctly.
      *
      * @dataProvider existingPropertiesNamesProvider
      * @param string $propertyName
      */
-    public function testReturnsTrueWhenPropertyExists($propertyName)
+    public function testGetsPropertyCorrectly($propertyName)
     {
+        $expectedPropertyValue = 1024;
+        $this->setDecapsulatedObjectProperty($propertyName, $expectedPropertyValue);
+
         $arguments = array($propertyName);
 
-        $methodReturnedValue = $this->callTestedMethod($arguments);
+        $actualPropertyValue = $this->callTestedMethod($arguments);
 
-        $this->assertTrue($methodReturnedValue);
+        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
     }
 }

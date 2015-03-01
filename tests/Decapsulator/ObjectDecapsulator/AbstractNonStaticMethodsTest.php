@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractObjectDecapsulatorTest;
+use Decapsulator\ObjectDecapsulator\AbstractObjectDecapsulatorTest;
 
 /**
  * AbstractNonStaticMethodsTest.

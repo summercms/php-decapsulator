@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractStaticMethodsTest;
+use Decapsulator\ObjectDecapsulator\AbstractNonStaticMethodsTest;
 
 /**
- * CreateInstanceFromObjectTest.
+ * SetUpWithObjectTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractStaticMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class CreateInstanceFromObjectTest extends AbstractStaticMethodsTest
+class SetUpWithObjectTest extends AbstractNonStaticMethodsTest
 {
     /**
      * Provide tested method name.
@@ -32,31 +32,18 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTest
      */
     protected function provideTestedMethodName()
     {
-        return 'createInstanceFromObject';
+        return 'setUpWithObject';
     }
 
     /**
-     * Test createInstanceFromObjectSetsObject($object) method
-     * returns ObjectDecapsulator instance.
-     */
-    public function testReturnsCorrectInstance()
-    {
-        $arguments = array($this->decapsulatedObject);
-
-        $this->decapsulator = $this->callTestedMethod($arguments);
-
-        $this->assertInstanceOf('\Decapsulator\ObjectDecapsulator', $this->decapsulator);
-    }
-
-    /**
-     * Test createInstanceFromObjectSetsObject($object) method
+     * Test setUpWithObject($object) method
      * sets object property correctly.
      */
     public function testSetsObjectCorrectly()
     {
         $arguments = array($this->decapsulatedObject);
 
-        $this->decapsulator = $this->callTestedMethod($arguments);
+        $this->callTestedMethod($arguments);
 
         $decapsulatorObject = $this->getDecapsulatorProperty('object');
 
@@ -64,14 +51,14 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTest
     }
 
     /**
-     * Test createInstanceFromObjectSetsObject($object) method
+     * Test setUpWithObject($object) method
      * sets reflection property correctly.
      */
     public function testSetsReflectionCorrectly()
     {
         $arguments = array($this->decapsulatedObject);
 
-        $this->decapsulator = $this->callTestedMethod($arguments);
+        $this->callTestedMethod($arguments);
 
         $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
 

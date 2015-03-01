@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractStaticMethodsTest;
+use Decapsulator\ObjectDecapsulator\AbstractMethodAccessorsTest;
 
 /**
- * ObjectIsValidTest.
+ * MethodExistsTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractStaticMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class ObjectIsValidTest extends AbstractStaticMethodsTest
+class MethodExistsTest extends AbstractMethodAccessorsTest
 {
     /**
      * Provide tested method name.
@@ -32,17 +32,16 @@ class ObjectIsValidTest extends AbstractStaticMethodsTest
      */
     protected function provideTestedMethodName()
     {
-        return 'objectIsValid';
+        return 'methodExists';
     }
 
     /**
-     * Test objectIsValid($object) method
-     * returns false for argument of build-in type.
+     * Test methodExists($name) method
+     * returns false when the method does not exist.
      */
-    public function testReturnsFalseForBuildinType()
+    public function testReturnsFalseWhenMethodDoesNotExist()
     {
-        $object = 4;
-        $arguments = array($object);
+        $arguments = array(self::NONEXISTENT_METHOD_NAME);
 
         $returnedValue = $this->callTestedMethod($arguments);
 
@@ -50,12 +49,15 @@ class ObjectIsValidTest extends AbstractStaticMethodsTest
     }
 
     /**
-     * Test objectIsValid($object) method
-     * returns true for argument being a class instance.
+     * Test methodExists($name) method
+     * returns true when the method exists.
+     *
+     * @dataProvider existingMethodsNamesProvider
+     * @param string $methodName
      */
-    public function testReturnsTrueForObject()
+    public function testReturnsTrueWhenMethodExists($methodName)
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = array($methodName);
 
         $returnedValue = $this->callTestedMethod($arguments);
 

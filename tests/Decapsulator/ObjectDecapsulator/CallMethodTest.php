@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractMethodAccessorsTest;
+use Decapsulator\ObjectDecapsulator\AbstractMethodAccessorsTest;
 
 /**
  * CallMethodTest.

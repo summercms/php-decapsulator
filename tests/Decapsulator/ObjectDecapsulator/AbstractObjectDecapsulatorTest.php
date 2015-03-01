@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
 /**
  * AbstractObjectDecapsulatorTest.
@@ -28,7 +28,7 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      *
      * @var string
      */
-    const DECAPSULATED_OBJECT_CLASS_NAME = '\Decapsulator\DemoClass';
+    const DECAPSULATED_OBJECT_CLASS_NAME = '\Decapsulator\ObjectDecapsulator\DemoClass';
 
     /**
      * Reflection for the fixture class.

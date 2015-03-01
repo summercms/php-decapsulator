@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractPropertyAccessorsTest;
+use Decapsulator\ObjectDecapsulator\AbstractPropertyAccessorsTest;
 
 /**
- * SetPropertyTest.
+ * MagicSetTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,20 +23,25 @@ use Decapsulator\AbstractPropertyAccessorsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class SetPropertyTest extends AbstractPropertyAccessorsTest
+class MagicSetTest extends AbstractPropertyAccessorsTest
 {
     /**
-     * Provide tested method name.
+     * Test __set($name, $value) magic method
+     * throws InvalidObjectException
+     * when the property does not exist.
      *
-     * @param string $name
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Property does not exist.
      */
-    protected function provideTestedMethodName()
+    public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
-        return 'setProperty';
+        $propertyName = self::NONEXISTENT_PROPERTY_NAME;
+
+        $this->decapsulator->$propertyName = 4;
     }
 
     /**
-     * Test setProperty($name, $value) method
+     * Test __set($name, $value) magic method
      * sets given property value correctly.
      *
      * @dataProvider existingPropertiesNamesProvider
@@ -44,14 +49,8 @@ class SetPropertyTest extends AbstractPropertyAccessorsTest
      */
     public function testSetsPropertyCorrectly($propertyName)
     {
-        $expectedPropertyValue = 1024;
-
-        $arguments = array(
-            $propertyName,
-            $expectedPropertyValue,
-        );
-
-        $this->callTestedMethod($arguments);
+        $expectedPropertyValue = 4;
+        $this->decapsulator->$propertyName = $expectedPropertyValue;
 
         $actualPropertyValue = $this->getDecapsulatedObjectProperty($propertyName);
 

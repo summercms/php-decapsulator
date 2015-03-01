@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractMethodAccessorsTest;
+use Decapsulator\ObjectDecapsulator\AbstractStaticMethodsTest;
 
 /**
- * MethodExistsTest.
+ * ObjectIsValidTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +23,7 @@ use Decapsulator\AbstractMethodAccessorsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MethodExistsTest extends AbstractMethodAccessorsTest
+class ObjectIsValidTest extends AbstractStaticMethodsTest
 {
     /**
      * Provide tested method name.
@@ -32,16 +32,17 @@ class MethodExistsTest extends AbstractMethodAccessorsTest
      */
     protected function provideTestedMethodName()
     {
-        return 'methodExists';
+        return 'objectIsValid';
     }
 
     /**
-     * Test methodExists($name) method
-     * returns false when the method does not exist.
+     * Test objectIsValid($object) method
+     * returns false for argument of build-in type.
      */
-    public function testReturnsFalseWhenMethodDoesNotExist()
+    public function testReturnsFalseForBuildinType()
     {
-        $arguments = array(self::NONEXISTENT_METHOD_NAME);
+        $object = 4;
+        $arguments = array($object);
 
         $returnedValue = $this->callTestedMethod($arguments);
 
@@ -49,15 +50,12 @@ class MethodExistsTest extends AbstractMethodAccessorsTest
     }
 
     /**
-     * Test methodExists($name) method
-     * returns true when the method exists.
-     *
-     * @dataProvider existingMethodsNamesProvider
-     * @param string $methodName
+     * Test objectIsValid($object) method
+     * returns true for argument being a class instance.
      */
-    public function testReturnsTrueWhenMethodExists($methodName)
+    public function testReturnsTrueForObject()
     {
-        $arguments = array($methodName);
+        $arguments = array($this->decapsulatedObject);
 
         $returnedValue = $this->callTestedMethod($arguments);
 

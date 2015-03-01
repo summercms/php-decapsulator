@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator;
+namespace Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\AbstractNonStaticMethodsTest;
+use Decapsulator\ObjectDecapsulator\AbstractNonStaticMethodsTest;
 
 /**
  * SetUpReflectionTest.
