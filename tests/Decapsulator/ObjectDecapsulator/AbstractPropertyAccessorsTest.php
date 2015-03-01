@@ -30,13 +30,13 @@ abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorT
      *
      * @var string
      */
-    const NONEXISTENT_PROPERTY_NAME = 'nonexistentProperty';
-    const PUBLIC_STATIC_PROPERTY_NAME = 'publicStaticProperty';
-    const PROTECTED_STATIC_PROPERTY_NAME = 'protectedStaticProperty';
-    const PRIVATE_STATIC_PROPERTY_NAME = 'privateStaticProperty';
-    const PUBLIC_PROPERTY_NAME = 'publicProperty';
-    const PROTECTED_PROPERTY_NAME = 'protectedProperty';
-    const PRIVATE_PROPERTY_NAME = 'privateProperty';
+    const NONEXISTENT_PROPERTY = 'nonexistentProperty';
+    const PUBLIC_STATIC_PROPERTY = 'publicStaticProperty';
+    const PROTECTED_STATIC_PROPERTY = 'protectedStaticProperty';
+    const PRIVATE_STATIC_PROPERTY = 'privateStaticProperty';
+    const PUBLIC_PROPERTY = 'publicProperty';
+    const PROTECTED_PROPERTY = 'protectedProperty';
+    const PRIVATE_PROPERTY = 'privateProperty';
 
     /**
      * Set up the fixtures and helpers.
@@ -84,17 +84,17 @@ abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorT
      *
      * @return array[string]
      */
-    public function existingPropertiesNamesProvider()
+    public function existingPropertiesProvider()
     {
-        $existingPropertiesNames = array(
-            array(self::PUBLIC_STATIC_PROPERTY_NAME),
-            array(self::PROTECTED_STATIC_PROPERTY_NAME),
-            array(self::PRIVATE_STATIC_PROPERTY_NAME),
-            array(self::PUBLIC_PROPERTY_NAME),
-            array(self::PROTECTED_PROPERTY_NAME),
-            array(self::PRIVATE_PROPERTY_NAME),
+        $existingProperties = array(
+            array(self::PUBLIC_STATIC_PROPERTY),
+            array(self::PROTECTED_STATIC_PROPERTY),
+            array(self::PRIVATE_STATIC_PROPERTY),
+            array(self::PUBLIC_PROPERTY),
+            array(self::PROTECTED_PROPERTY),
+            array(self::PRIVATE_PROPERTY),
         );
 
-        return $existingPropertiesNames;
+        return $existingProperties;
     }
 }

@@ -43,8 +43,8 @@ class SetUpReflectionTest extends AbstractNonStaticMethodsTest
         $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
         $this->callTestedMethod();
 
-        $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
+        $reflection = $this->getDecapsulatorProperty('reflection');
 
-        $this->assertEquals($this->decapsulatedObjectReflection, $decapsulatorReflection);
+        $this->assertEquals($this->decapsulatedObjectReflection, $reflection);
     }
 }

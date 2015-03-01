@@ -39,22 +39,22 @@ class SetPropertyTest extends AbstractPropertyAccessorsTest
      * Test setProperty($name, $value) method
      * sets given property value correctly.
      *
-     * @dataProvider existingPropertiesNamesProvider
-     * @param string $propertyName
+     * @dataProvider existingPropertiesProvider
+     * @param string $property
      */
-    public function testSetsPropertyCorrectly($propertyName)
+    public function testSetsPropertyCorrectly($property)
     {
-        $expectedPropertyValue = 1024;
+        $expectedValue = 1024;
 
         $arguments = array(
-            $propertyName,
-            $expectedPropertyValue,
+            $property,
+            $expectedValue,
         );
 
         $this->callTestedMethod($arguments);
 
-        $actualPropertyValue = $this->getDecapsulatedObjectProperty($propertyName);
+        $actualValue = $this->getDecapsulatedObjectProperty($property);
 
-        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
+        $this->assertEquals($expectedValue, $actualValue);
     }
 }

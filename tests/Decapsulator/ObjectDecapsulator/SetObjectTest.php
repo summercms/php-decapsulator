@@ -45,8 +45,8 @@ class SetObjectTest extends AbstractNonStaticMethodsTest
 
         $this->callTestedMethod($arguments);
 
-        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+        $object = $this->getDecapsulatorProperty('object');
 
-        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+        $this->assertSame($this->decapsulatedObject, $object);
     }
 }

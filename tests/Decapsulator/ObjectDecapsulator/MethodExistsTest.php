@@ -41,26 +41,26 @@ class MethodExistsTest extends AbstractMethodAccessorsTest
      */
     public function testReturnsFalseWhenMethodDoesNotExist()
     {
-        $arguments = array(self::NONEXISTENT_METHOD_NAME);
+        $arguments = array(self::NONEXISTENT_METHOD);
 
-        $returnedValue = $this->callTestedMethod($arguments);
+        $methodExists = $this->callTestedMethod($arguments);
 
-        $this->assertFalse($returnedValue);
+        $this->assertFalse($methodExists);
     }
 
     /**
      * Test methodExists($name) method
      * returns true when the method exists.
      *
-     * @dataProvider existingMethodsNamesProvider
+     * @dataProvider existingMethodsProvider
      * @param string $methodName
      */
     public function testReturnsTrueWhenMethodExists($methodName)
     {
         $arguments = array($methodName);
 
-        $returnedValue = $this->callTestedMethod($arguments);
+        $methodExists = $this->callTestedMethod($arguments);
 
-        $this->assertTrue($returnedValue);
+        $this->assertTrue($methodExists);
     }
 }

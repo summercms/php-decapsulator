@@ -45,9 +45,9 @@ class SetUpWithObjectTest extends AbstractNonStaticMethodsTest
 
         $this->callTestedMethod($arguments);
 
-        $decapsulatorObject = $this->getDecapsulatorProperty('object');
+        $object = $this->getDecapsulatorProperty('object');
 
-        $this->assertSame($this->decapsulatedObject, $decapsulatorObject);
+        $this->assertSame($this->decapsulatedObject, $object);
     }
 
     /**
@@ -60,8 +60,8 @@ class SetUpWithObjectTest extends AbstractNonStaticMethodsTest
 
         $this->callTestedMethod($arguments);
 
-        $decapsulatorReflection = $this->getDecapsulatorProperty('reflection');
+        $reflection = $this->getDecapsulatorProperty('reflection');
 
-        $this->assertEquals($this->decapsulatedObjectReflection, $decapsulatorReflection);
+        $this->assertEquals($this->decapsulatedObjectReflection, $reflection);
     }
 }

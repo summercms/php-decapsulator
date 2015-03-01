@@ -41,26 +41,26 @@ class PropertyExistsTest extends AbstractPropertyAccessorsTest
      */
     public function testReturnsFalseWhenPropertyDoesNotExist()
     {
-        $arguments = array(self::NONEXISTENT_PROPERTY_NAME);
+        $arguments = array(self::NONEXISTENT_PROPERTY);
 
-        $methodReturnedValue = $this->callTestedMethod($arguments);
+        $propertyExists = $this->callTestedMethod($arguments);
 
-        $this->assertFalse($methodReturnedValue);
+        $this->assertFalse($propertyExists);
     }
 
     /**
      * Test propertyExists($name) method
      * returns true when the property exists.
      *
-     * @dataProvider existingPropertiesNamesProvider
+     * @dataProvider existingPropertiesProvider
      * @param string $propertyName
      */
     public function testReturnsTrueWhenPropertyExists($propertyName)
     {
         $arguments = array($propertyName);
 
-        $methodReturnedValue = $this->callTestedMethod($arguments);
+        $propertyExists = $this->callTestedMethod($arguments);
 
-        $this->assertTrue($methodReturnedValue);
+        $this->assertTrue($propertyExists);
     }
 }

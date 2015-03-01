@@ -39,18 +39,18 @@ class GetPropertyTest extends AbstractPropertyAccessorsTest
      * Test getProperty($name) method
      * gets property value correctly.
      *
-     * @dataProvider existingPropertiesNamesProvider
-     * @param string $propertyName
+     * @dataProvider existingPropertiesProvider
+     * @param string $property
      */
-    public function testGetsPropertyCorrectly($propertyName)
+    public function testGetsPropertyCorrectly($property)
     {
-        $expectedPropertyValue = 1024;
-        $this->setDecapsulatedObjectProperty($propertyName, $expectedPropertyValue);
+        $expectedValue = 1024;
+        $this->setDecapsulatedObjectProperty($property, $expectedValue);
 
-        $arguments = array($propertyName);
+        $arguments = array($property);
 
-        $actualPropertyValue = $this->callTestedMethod($arguments);
+        $actualValue = $this->callTestedMethod($arguments);
 
-        $this->assertEquals($expectedPropertyValue, $actualPropertyValue);
+        $this->assertEquals($expectedValue, $actualValue);
     }
 }

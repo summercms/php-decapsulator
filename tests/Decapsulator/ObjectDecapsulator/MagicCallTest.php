@@ -34,21 +34,21 @@ class MagicCallTest extends AbstractMethodAccessorsTest
      */
     public function testThrowsExceptionWhenMethodDoesNotExist()
     {
-        $methodName = self::NONEXISTENT_METHOD_NAME;
+        $method = self::NONEXISTENT_METHOD;
 
-        $this->decapsulator->$methodName(4);
+        $this->decapsulator->$method(4);
     }
 
     /**
      * Test _call($name, $arguments) magic method calls method with no arguments correctly.
      *
-     * @dataProvider noArgumentsMethodsNamesAndReturnedValuesProvider
-     * @param string $methodName
+     * @dataProvider noArgumentsMethodsAndReturnedValuesProvider
+     * @param string $method
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodMethodWithNoArgumentsCorrectly($methodName, $expectedReturnedValue)
+    public function testCallsMethodMethodWithNoArgumentsCorrectly($method, $expectedReturnedValue)
     {
-        $actualReturnedValue = $this->decapsulator->$methodName();
+        $actualReturnedValue = $this->decapsulator->$method();
 
         $this->assertEquals($expectedReturnedValue, $actualReturnedValue);
     }
@@ -56,14 +56,14 @@ class MagicCallTest extends AbstractMethodAccessorsTest
     /**
      * Test _call($name, $arguments) magic method calls method with arguments correctly.
      *
-     * @dataProvider argumentsMethodsNamesAndReturnedValuesProvider
-     * @param string       $methodName
+     * @dataProvider argumentsMethodsAndReturnedValuesProvider
+     * @param string       $method
      * @param array[mixed] $arguments
      * @param string       $expectedReturnedValue
      */
-    public function testCallsMethodMethodWithArgumentsCorrectly($methodName, $arguments, $expectedReturnedValue)
+    public function testCallsMethodMethodWithArgumentsCorrectly($method, $arguments, $expectedReturnedValue)
     {
-        $actualReturnedValue = $this->decapsulator->$methodName($arguments[0], $arguments[1]);
+        $actualReturnedValue = $this->decapsulator->$method($arguments[0], $arguments[1]);
 
         $this->assertEquals($expectedReturnedValue, $actualReturnedValue);
     }
