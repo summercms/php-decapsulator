@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
-
-use Decapsulator\AbstractPropertyAccessorsTest\ObjectDecapsulator;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
  * PropertyExistsTest.

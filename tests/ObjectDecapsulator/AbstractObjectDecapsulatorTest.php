@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
  * AbstractObjectDecapsulatorTest.
@@ -28,7 +28,14 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      *
      * @var string
      */
-    const DECAPSULATED_OBJECT_CLASS = '\Decapsulator\ObjectDecapsulator\DemoClass';
+    const DECAPSULATED_OBJECT_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator\DemoClass';
+
+    /**
+     * Name of dacapsulator class.
+     *
+     * @var string
+     */
+    const DECAPSULATOR_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator';
 
     /**
      * Reflection for the fixture class.
@@ -106,7 +113,7 @@ abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCas
      */
     protected function initDecapsulatorReflection()
     {
-        $class = '\Decapsulator\ObjectDecapsulator';
+        $class = self::DECAPSULATOR_CLASS;
         $this->decapsulatorReflection = new \ReflectionClass($class);
     }
 

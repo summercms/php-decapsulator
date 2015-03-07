@@ -9,12 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
-
-use Decapsulator\ObjectDecapsulator\AbstractPropertyAccessorsTest;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * MagicConstructTest.
+ * AbstractNonStaticMethodsTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,16 +21,17 @@ use Decapsulator\ObjectDecapsulator\AbstractPropertyAccessorsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicConstructTest extends AbstractPropertyAccessorsTest
+abstract class AbstractNonStaticMethodsTest extends AbstractObjectDecapsulatorTest
 {
     /**
-     * Test __construct() magic method
-     * cannot be called.
+     * Set up the fixtures and helpers.
+     * Called before a test is executed.
      */
-    public function testIsNotAvailable()
+    public function setUp()
     {
-        $isAvailable = $this->decapsulatorReflection->isInstantiable();
-
-        $this->assertFalse($isAvailable);
+        $this->initDeapsulatedObjectReflection();
+        $this->initDecapsulatedObject();
+        $this->initDecapsulatorReflection();
+        $this->initDecapsulator();
     }
 }

@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
-
-use Decapsulator\ObjectDecapsulator\AbstractObjectDecapsulatorTest;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
  * AbstractMethodAccessorsTest.

@@ -9,12 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
-
-use Decapsulator\ObjectDecapsulator\AbstractNonStaticMethodsTest;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * SetUpWithObjectTest.
+ * SetUpReflectionTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,7 +21,7 @@ use Decapsulator\ObjectDecapsulator\AbstractNonStaticMethodsTest;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class SetUpWithObjectTest extends AbstractNonStaticMethodsTest
+class SetUpReflectionTest extends AbstractNonStaticMethodsTest
 {
     /**
      * Provide tested method name.
@@ -32,33 +30,16 @@ class SetUpWithObjectTest extends AbstractNonStaticMethodsTest
      */
     protected function provideTestedMethodName()
     {
-        return 'setUpWithObject';
+        return 'setUpReflection';
     }
 
     /**
-     * Test setUpWithObject($object) method
-     * sets object property correctly.
+     * Test setUpReflection() method sets reflection property correctly.
      */
-    public function testSetsObjectCorrectly()
+    public function testSetUpReflectionSetsReflectionCorrectly()
     {
-        $arguments = array($this->decapsulatedObject);
-
-        $this->callTestedMethod($arguments);
-
-        $object = $this->getDecapsulatorProperty('object');
-
-        $this->assertSame($this->decapsulatedObject, $object);
-    }
-
-    /**
-     * Test setUpWithObject($object) method
-     * sets reflection property correctly.
-     */
-    public function testSetsReflectionCorrectly()
-    {
-        $arguments = array($this->decapsulatedObject);
-
-        $this->callTestedMethod($arguments);
+        $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
+        $this->callTestedMethod();
 
         $reflection = $this->getDecapsulatorProperty('reflection');
 

@@ -9,10 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
-use Decapsulator\ObjectDecapsulator\AbstractStaticMethodsTest;
-use Decapsulator\ObjectDecapsulator;
+use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
  * BuildForObjectTest.
@@ -59,7 +58,7 @@ class BuildForObjectTest extends AbstractStaticMethodsTest
     {
         $decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
 
-        $this->assertInstanceOf('Decapsulator\ObjectDecapsulator', $decapsulator);
+        $this->assertInstanceOf(self::DECAPSULATOR_CLASS, $decapsulator);
     }
 
     /**

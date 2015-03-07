@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decapsulator\ObjectDecapsulator;
-
-use Decapsulator\ObjectDecapsulator\AbstractStaticMethodsTest;
+namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
  * CreateInstanceFromObjectTest.
@@ -45,7 +43,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTest
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 
-        $this->assertInstanceOf('\Decapsulator\ObjectDecapsulator', $this->decapsulator);
+        $this->assertInstanceOf(self::DECAPSULATOR_CLASS, $this->decapsulator);
     }
 
     /**

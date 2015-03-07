@@ -1,12 +1,19 @@
 {
     "name": "exorg/decapsulator",
-    "description": "Decapsulator",
+    "description": "Decapsulating objects wrapper.",
     "type": "library",
     "keywords": [
         "exorg",
         "decapsulator"
     ],
     "license": "MIT",
+    "authors" : [
+        {
+            "name": "Katarzyna Krasińska",
+            "email": "katheroine@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=5.5.9"
     },
@@ -15,13 +22,13 @@
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
-        "psr-0": {
-            "Decapsulator\\": "src/"
+        "psr-4": {
+            "Exorg\\Decapsulator\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-0": {
-            "Decapsulator\\": "tests/"
+        "psr-4": {
+            "Exorg\\Decapsulator\\": "tests/"
         }
     }
 }
