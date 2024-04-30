@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractObjectDecapsulatorTest extends TestCase
+abstract class AbstractObjectDecapsulatorTestCase extends TestCase
 {
     /**
      * Name of the decapsulated object class.

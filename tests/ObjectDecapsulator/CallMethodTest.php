@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class CallMethodTest extends AbstractMethodAccessorsTest
+class CallMethodTest extends AbstractMethodAccessorsTestCase
 {
     /**
      * Provide tested method name.

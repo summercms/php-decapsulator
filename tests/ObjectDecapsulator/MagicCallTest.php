@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicCallTest extends AbstractMethodAccessorsTest
+class MagicCallTest extends AbstractMethodAccessorsTestCase
 {
     /**
      * Test _call($name, $arguments) magic method throws InvalidObjectException

@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorTest
+abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsulatorTestCase
 {
     /**
      * Names of the decapsulated object class properties.
@@ -84,7 +84,7 @@ abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorT
      *
      * @return array[string]
      */
-    public function existingPropertiesProvider()
+    public static function existingPropertiesProvider()
     {
         $existingProperties = array(
             array(self::PUBLIC_STATIC_PROPERTY),

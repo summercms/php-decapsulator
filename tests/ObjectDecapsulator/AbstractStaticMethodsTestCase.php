@@ -12,7 +12,7 @@
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * AbstractNonStaticMethodsTest.
+ * AbstractStaticMethodsTest.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractNonStaticMethodsTest extends AbstractObjectDecapsulatorTest
+abstract class AbstractStaticMethodsTestCase extends AbstractObjectDecapsulatorTestCase
 {
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -34,6 +34,5 @@ abstract class AbstractNonStaticMethodsTest extends AbstractObjectDecapsulatorTe
         $this->initDeapsulatedObjectReflection();
         $this->initDecapsulatedObject();
         $this->initDecapsulatorReflection();
-        $this->initDecapsulator();
     }
 }

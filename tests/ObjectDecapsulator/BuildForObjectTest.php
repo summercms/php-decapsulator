@@ -23,7 +23,7 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class BuildForObjectTest extends AbstractStaticMethodsTest
+class BuildForObjectTest extends AbstractStaticMethodsTestCase
 {
     /**
      * Provide tested method name.

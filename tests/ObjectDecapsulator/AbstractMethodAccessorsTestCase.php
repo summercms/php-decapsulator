@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTest
+abstract class AbstractMethodAccessorsTestCase extends AbstractObjectDecapsulatorTestCase
 {
     /**
      * Names of fixture class methods.
@@ -62,7 +62,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @return array[array[string]]
      */
-    public function existingMethodsProvider()
+    public static function existingMethodsProvider()
     {
         $existingProperties = array(
             array(self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS),
@@ -88,7 +88,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @return array[array[string, string]]
      */
-    public function noArgumentsMethodsAndReturnedValuesProvider()
+    public static function noArgumentsMethodsAndReturnedValuesProvider()
     {
         $noArgumentsMethodsAndReturnedValues = array(
             array(
@@ -126,7 +126,7 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
      *
      * @return array[array[string, array[string, string], string]]
      */
-    public function argumentsMethodsAndReturnedValuesProvider()
+    public static function argumentsMethodsAndReturnedValuesProvider()
     {
         $argumentsMethodsAndReturnedValues = array(
             array(

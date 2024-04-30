@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicSetTest extends AbstractPropertyAccessorsTest
+class MagicSetTest extends AbstractPropertyAccessorsTestCase
 {
     /**
      * Test __set($name, $value) magic method
