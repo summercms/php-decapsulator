@@ -11,6 +11,8 @@
 
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * AbstractObjectDecapsulatorTest.
  * PHPUnit test class for ObjectDecapsulator class.
@@ -21,7 +23,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractObjectDecapsulatorTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractObjectDecapsulatorTest extends TestCase
 {
     /**
      * Name of the decapsulated object class.

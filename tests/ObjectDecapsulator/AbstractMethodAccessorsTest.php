@@ -43,10 +43,12 @@ abstract class AbstractMethodAccessorsTest extends AbstractObjectDecapsulatorTes
     const PRIVATE_METHOD_WITH_ARGUMENTS = 'privateMethodWithArguments';
 
     /**
-     * Set up the fixtures and helpers.
-     * Called before a test is executed.
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->initDeapsulatedObjectReflection();
         $this->initDecapsulatedObject();

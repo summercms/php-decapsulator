@@ -37,10 +37,12 @@ abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorT
     const PRIVATE_PROPERTY = 'privateProperty';
 
     /**
-     * Set up the fixtures and helpers.
-     * Called before a test is executed.
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->initDeapsulatedObjectReflection();
         $this->initDecapsulatedObject();
