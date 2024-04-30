@@ -26,12 +26,12 @@ class MagicCallTest extends AbstractMethodAccessorsTest
     /**
      * Test _call($name, $arguments) magic method throws InvalidObjectException
      * when the called method does not exist.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Method does not exist.
      */
     public function testThrowsExceptionWhenMethodDoesNotExist()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Method does not exist.');
+
         $method = self::NONEXISTENT_METHOD;
 
         $this->decapsulator->$method(4);

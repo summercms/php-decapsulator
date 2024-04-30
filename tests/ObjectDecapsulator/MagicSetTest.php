@@ -27,12 +27,12 @@ class MagicSetTest extends AbstractPropertyAccessorsTest
      * Test __set($name, $value) magic method
      * throws InvalidObjectException
      * when the property does not exist.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Property does not exist.
      */
     public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Property does not exist.');
+
         $property = self::NONEXISTENT_PROPERTY;
 
         $this->decapsulator->$property = 4;

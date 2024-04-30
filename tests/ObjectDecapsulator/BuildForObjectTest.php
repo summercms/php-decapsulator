@@ -38,12 +38,12 @@ class BuildForObjectTest extends AbstractStaticMethodsTest
     /**
      * Test buildForObject($object) method
      * throws InvalidObjectException when $object is not valid.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Argument is not an object.
      */
     public function testThrowsExceptionForNotValidObject()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Argument is not an object.');
+
         $object = 4;
         $arguments = array($object);
 
