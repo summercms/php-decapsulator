@@ -12,13 +12,13 @@
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * SetObjectTest.
+ * Test for setObject method.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://http://opensource.org/licenses/MIT MIT License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class SetObjectTest extends AbstractNonStaticMethodsTestCase

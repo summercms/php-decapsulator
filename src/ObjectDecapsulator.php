@@ -12,15 +12,15 @@
 namespace ExOrg\Decapsulator;
 
 /**
- * ObjectDecapsulator.
+ * Object decapsulator.
  * Decapsulator for object.
  * Provider direct access to non-public properties and methods
  * of the class of the wrapped object.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://framework.zend.com/license/new-bsd New BSD License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class ObjectDecapsulator
