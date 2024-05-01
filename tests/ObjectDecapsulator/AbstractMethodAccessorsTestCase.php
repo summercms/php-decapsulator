@@ -30,19 +30,19 @@ abstract class AbstractMethodAccessorsTestCase extends AbstractObjectDecapsulato
      *
      * @var unknown
      */
-    const NONEXISTENT_METHOD = 'nonexistentMethod';
-    const PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS = 'publicStaticMethodWithNoArguments';
-    const PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS = 'protectedStaticMethodWithNoArguments';
-    const PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS = 'privateStaticMethodWithNoArguments';
-    const PUBLIC_STATIC_METHOD_WITH_ARGUMENTS = 'publicStaticMethodWithArguments';
-    const PROTECTED_STATIC_METHOD_WITH_ARGUMENTS = 'protectedStaticMethodWithArguments';
-    const PRIVATE_STATIC_METHOD_WITH_ARGUMENTS = 'privateStaticMethodWithArguments';
-    const PUBLIC_METHOD_WITH_NO_ARGUMENTS = 'publicMethodWithNoArguments';
-    const PROTECTED_METHOD_WITH_NO_ARGUMENTS = 'protectedMethodWithNoArguments';
-    const PRIVATE_METHOD_WITH_NO_ARGUMENTS = 'privateMethodWithNoArguments';
-    const PUBLIC_METHOD_WITH_ARGUMENTS = 'publicMethodWithArguments';
-    const PROTECTED_METHOD_WITH_ARGUMENTS = 'protectedMethodWithArguments';
-    const PRIVATE_METHOD_WITH_ARGUMENTS = 'privateMethodWithArguments';
+    protected const NONEXISTENT_METHOD = 'nonexistentMethod';
+    private const PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS = 'publicStaticMethodWithNoArguments';
+    private const PROTECTED_STATIC_METHOD_WITH_NO_ARGUMENTS = 'protectedStaticMethodWithNoArguments';
+    private const PRIVATE_STATIC_METHOD_WITH_NO_ARGUMENTS = 'privateStaticMethodWithNoArguments';
+    private const PUBLIC_STATIC_METHOD_WITH_ARGUMENTS = 'publicStaticMethodWithArguments';
+    private const PROTECTED_STATIC_METHOD_WITH_ARGUMENTS = 'protectedStaticMethodWithArguments';
+    private const PRIVATE_STATIC_METHOD_WITH_ARGUMENTS = 'privateStaticMethodWithArguments';
+    private const PUBLIC_METHOD_WITH_NO_ARGUMENTS = 'publicMethodWithNoArguments';
+    private const PROTECTED_METHOD_WITH_NO_ARGUMENTS = 'protectedMethodWithNoArguments';
+    private const PRIVATE_METHOD_WITH_NO_ARGUMENTS = 'privateMethodWithNoArguments';
+    private const PUBLIC_METHOD_WITH_ARGUMENTS = 'publicMethodWithArguments';
+    private const PROTECTED_METHOD_WITH_ARGUMENTS = 'protectedMethodWithArguments';
+    private const PRIVATE_METHOD_WITH_ARGUMENTS = 'privateMethodWithArguments';
 
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -64,7 +64,7 @@ abstract class AbstractMethodAccessorsTestCase extends AbstractObjectDecapsulato
      *
      * @return array[array[string]]
      */
-    public static function existingMethodsProvider()
+    public static function existingMethodsProvider(): array
     {
         $existingProperties = array(
             array(self::PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS),
@@ -90,7 +90,7 @@ abstract class AbstractMethodAccessorsTestCase extends AbstractObjectDecapsulato
      *
      * @return array[array[string, string]]
      */
-    public static function noArgumentsMethodsAndReturnedValuesProvider()
+    public static function noArgumentsMethodsAndReturnedValuesProvider(): array
     {
         $noArgumentsMethodsAndReturnedValues = array(
             array(
@@ -128,7 +128,7 @@ abstract class AbstractMethodAccessorsTestCase extends AbstractObjectDecapsulato
      *
      * @return array[array[string, array[string, string], string]]
      */
-    public static function argumentsMethodsAndReturnedValuesProvider()
+    public static function argumentsMethodsAndReturnedValuesProvider(): array
     {
         $argumentsMethodsAndReturnedValues = array(
             array(

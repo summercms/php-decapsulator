@@ -30,13 +30,13 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
      *
      * @var string
      */
-    const NONEXISTENT_PROPERTY = 'nonexistentProperty';
-    const PUBLIC_STATIC_PROPERTY = 'publicStaticProperty';
-    const PROTECTED_STATIC_PROPERTY = 'protectedStaticProperty';
-    const PRIVATE_STATIC_PROPERTY = 'privateStaticProperty';
-    const PUBLIC_PROPERTY = 'publicProperty';
-    const PROTECTED_PROPERTY = 'protectedProperty';
-    const PRIVATE_PROPERTY = 'privateProperty';
+    protected const NONEXISTENT_PROPERTY = 'nonexistentProperty';
+    private const PUBLIC_STATIC_PROPERTY = 'publicStaticProperty';
+    private const PROTECTED_STATIC_PROPERTY = 'protectedStaticProperty';
+    private const PRIVATE_STATIC_PROPERTY = 'privateStaticProperty';
+    private const PUBLIC_PROPERTY = 'publicProperty';
+    private const PROTECTED_PROPERTY = 'protectedProperty';
+    private const PRIVATE_PROPERTY = 'privateProperty';
 
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -59,7 +59,7 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
      * @param string $name
      * @param mixed $value
      */
-    protected function setDecapsulatedObjectProperty($name, $value)
+    protected function setDecapsulatedObjectProperty(string $name, mixed $value): void
     {
         $property = $this->decapsulatedObjectReflection->getProperty($name);
         $property->setAccessible(true);
@@ -70,9 +70,10 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
      * Get decapsualted object public or non-public property.
      *
      * @param string $name
+     *
      * @return mixed
      */
-    protected function getDecapsulatedObjectProperty($name)
+    protected function getDecapsulatedObjectProperty(string $name): mixed
     {
         $property = $this->decapsulatedObjectReflection->getProperty($name);
         $property->setAccessible(true);
@@ -84,9 +85,9 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
     /**
      * Provide existing properties names of the decapsulated object class.
      *
-     * @return array[string]
+     * @return string[]
      */
-    public static function existingPropertiesProvider()
+    public static function existingPropertiesProvider(): array
     {
         $existingProperties = array(
             array(self::PUBLIC_STATIC_PROPERTY),

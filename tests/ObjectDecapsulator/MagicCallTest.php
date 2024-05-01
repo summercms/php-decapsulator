@@ -43,10 +43,11 @@ class MagicCallTest extends AbstractMethodAccessorsTestCase
      * Test _call($name, $arguments) magic method calls method with no arguments correctly.
      *
      * @dataProvider noArgumentsMethodsAndReturnedValuesProvider
+     *
      * @param string $method
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodMethodWithNoArgumentsCorrectly($method, $expectedReturnedValue)
+    public function testCallsMethodMethodWithNoArgumentsCorrectly(string $method, string $expectedReturnedValue)
     {
         $actualReturnedValue = $this->decapsulator->$method();
 
@@ -57,11 +58,12 @@ class MagicCallTest extends AbstractMethodAccessorsTestCase
      * Test _call($name, $arguments) magic method calls method with arguments correctly.
      *
      * @dataProvider argumentsMethodsAndReturnedValuesProvider
-     * @param string       $method
-     * @param array[mixed] $arguments
-     * @param string       $expectedReturnedValue
+     *
+     * @param string $method
+     * @param mixed[] $arguments
+     * @param string $expectedReturnedValue
      */
-    public function testCallsMethodMethodWithArgumentsCorrectly($method, $arguments, $expectedReturnedValue)
+    public function testCallsMethodMethodWithArgumentsCorrectly(string $method, array $arguments, string $expectedReturnedValue)
     {
         $actualReturnedValue = $this->decapsulator->$method($arguments[0], $arguments[1]);
 

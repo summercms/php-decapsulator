@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 use PHPUnit\Framework\TestCase;
+use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Object decapsulator test.
@@ -32,14 +33,14 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      *
      * @var string
      */
-    const DECAPSULATED_OBJECT_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator\DemoClass';
+    private const DECAPSULATED_OBJECT_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator\DemoClass';
 
     /**
      * Name of dacapsulator class.
      *
      * @var string
      */
-    const DECAPSULATOR_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator';
+    protected const DECAPSULATOR_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator';
 
     /**
      * Reflection for the fixture class.
@@ -47,7 +48,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      * @var \ReflectionClass
      * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS
      */
-    protected $decapsulatedObjectReflection;
+    protected \ReflectionClass $decapsulatedObjectReflection;
 
     /**
      * Decapsulated object.
@@ -55,29 +56,30 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      *
      * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS
      */
-    protected $decapsulatedObject;
+    protected object $decapsulatedObject;
 
     /**
      * Reflection for the testes class.
      *
      * @var \ReflectionClass
      */
-    protected $decapsulatorReflection;
+    protected \ReflectionClass $decapsulatorReflection;
 
     /**
      * Instance of tested class.
      *
      * @var ObjectDecapsulator
      */
-    protected $decapsulator = null;
+    protected ObjectDecapsulator $decapsulator;
 
     /**
      * Call tested method and return result.
      *
      * @param string $arguments
+     *
      * @return mixed
      */
-    public function callTestedMethod($arguments = null)
+    public function callTestedMethod(array $arguments = []): mixed
     {
         $result = $this->callDecapsulatorMethod($this->provideTestedMethodName(), $arguments);
 
@@ -87,17 +89,17 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Provide tested method name.
      *
-     * @param string $name
+     * @return string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
-        return null;
+        return '';
     }
 
     /**
      * Initialize reflection for the decapsulated object fixture class.
      */
-    protected function initDeapsulatedObjectReflection()
+    protected function initDeapsulatedObjectReflection(): void
     {
         $class = self::DECAPSULATED_OBJECT_CLASS;
         $this->decapsulatedObjectReflection = new \ReflectionClass($class);
@@ -106,7 +108,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Initialize decapsulated object fixture.
      */
-    protected function initDecapsulatedObject()
+    protected function initDecapsulatedObject(): void
     {
         $class = self::DECAPSULATED_OBJECT_CLASS;
         $this->decapsulatedObject = new $class();
@@ -115,7 +117,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Initialize reflection for the tested class.
      */
-    protected function initDecapsulatorReflection()
+    protected function initDecapsulatorReflection(): void
     {
         $class = self::DECAPSULATOR_CLASS;
         $this->decapsulatorReflection = new \ReflectionClass($class);
@@ -124,7 +126,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Initialize instance of tested class.
      */
-    protected function initDecapsulator()
+    protected function initDecapsulator(): void
     {
         $this->decapsulator = $this->decapsulatorReflection->newInstanceWithoutConstructor();
     }
@@ -132,7 +134,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Set-up properties of tested class instance.
      */
-    protected function setUpDecapsulator()
+    protected function setUpDecapsulator(): void
     {
         $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
         $this->setUpDecapsualatedObjectOfDecapsulator();
@@ -142,9 +144,11 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      * Set tested class instance public or non-public property.
      *
      * @param string $name
+     * @param mixed $value
+     *
      * @return mixed
      */
-    protected function setDecapsulatorProperty($name, $value)
+    protected function setDecapsulatorProperty(string $name, mixed $value): void
     {
         $property = $this->decapsulatorReflection->getProperty($name);
         $property->setAccessible(true);
@@ -155,9 +159,10 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      * Get tested class instance public or non-public property.
      *
      * @param string $name
+     *
      * @return mixed
      */
-    protected function getDecapsulatorProperty($name)
+    protected function getDecapsulatorProperty(string $name): mixed
     {
         $property = $this->decapsulatorReflection->getProperty($name);
         $property->setAccessible(true);
@@ -170,9 +175,11 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      * Call tested class instance public or non-public method.
      *
      * @param string $name
+     * @param mixed[] $arguments
+     *
      * @return mixed
      */
-    protected function callDecapsulatorMethod($name, $arguments = array())
+    protected function callDecapsulatorMethod(string $name, array $arguments = []): mixed
     {
         $argumentsExist = !empty($arguments);
 
@@ -188,7 +195,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Set up decapsulated object reflection property of tested class instance.
      */
-    private function setUpDecapsulatedObjectReflectionOfDecapsulator()
+    private function setUpDecapsulatedObjectReflectionOfDecapsulator(): void
     {
         $this->setDecapsulatorProperty('reflection', $this->decapsulatedObjectReflection);
     }
@@ -196,7 +203,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Set up decapsulated object instance property of tested class instance.
      */
-    private function setUpDecapsualatedObjectOfDecapsulator()
+    private function setUpDecapsualatedObjectOfDecapsulator(): void
     {
         $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
     }
@@ -205,9 +212,10 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      * Call tested class instance public or non-public method with no arguments.
      *
      * @param string $name
+     *
      * @return mixed
      */
-    private function callDecapsulatorMethodWithNoArguments($name)
+    private function callDecapsulatorMethodWithNoArguments($name): mixed
     {
         $method = $this->decapsulatorReflection->getMethod($name);
         $method->setAccessible(true);
@@ -221,9 +229,10 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      *
      * @param string $name
      * @param mixed[] $arguments
+     *
      * @return mixed
      */
-    private function callDecapsulatorMethodWithArguments($name, $arguments)
+    private function callDecapsulatorMethodWithArguments(string $name, array $arguments): mixed
     {
         $method = $this->decapsulatorReflection->getMethod($name);
         $method->setAccessible(true);

@@ -45,9 +45,10 @@ class MagicSetTest extends AbstractPropertyAccessorsTestCase
      * sets given property value correctly.
      *
      * @dataProvider existingPropertiesProvider
+     *
      * @param string $property
      */
-    public function testSetsPropertyCorrectly($property)
+    public function testSetsPropertyCorrectly(string $property)
     {
         $expectedValue = 4;
         $this->decapsulator->$property = $expectedValue;

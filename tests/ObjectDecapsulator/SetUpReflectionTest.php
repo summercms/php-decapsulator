@@ -30,7 +30,7 @@ class SetUpReflectionTest extends AbstractNonStaticMethodsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'setUpReflection';
     }

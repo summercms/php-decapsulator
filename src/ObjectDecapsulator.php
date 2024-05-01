@@ -30,23 +30,23 @@ class ObjectDecapsulator
     /**
      * Valid decapsulated object type.
      *
-     * @var unknown
+     * @var string
      */
-    const VALID_OBJECT_TYPE = 'object';
+    private const VALID_OBJECT_TYPE = 'object';
 
     /**
      * Decapsulated object.
      *
-     * @var mixed
+     * @var object
      */
-    private $object;
+    private object $object;
 
     /**
      * Reflection for decapsulated object.
      *
      * @var \ReflectionClass
      */
-    private $reflection;
+    private \ReflectionClass $reflection;
 
     /**
      * Constructor not available for public usage.
@@ -60,10 +60,12 @@ class ObjectDecapsulator
      * Build ObjectDecapsulator instance for given decapsulated object.
      *
      * @param mixed $object
+     *
+     * @return ObjectDecapsulator
+     *
      * @throws \InvalidArgumentException
-     * @return \Decapsulator\ObjectDecapsulator
      */
-    public static function buildForObject($object)
+    public static function buildForObject(mixed $object): ObjectDecapsulator
     {
         if (self::objectIsValid($object)) {
             $decapsulator = self::createInstanceFromObject($object);
@@ -82,9 +84,12 @@ class ObjectDecapsulator
      * Called when property is set directly by the property name.
      *
      * @param string $name
+     *
      * @param mixed  $value
+     *
+     * @throws \InvalidArgumentException
      */
-    public function __set($name, $value)
+    public function __set(string $name, mixed $value): void
     {
         $propertyExists = $this->propertyExists($name);
 
@@ -103,9 +108,12 @@ class ObjectDecapsulator
      * Called when property is get directly by the property name.
      *
      * @param string $name
+     *
      * @return mixed
+     *
+     * @throws \InvalidArgumentException
      */
-    public function __get($name)
+    public function __get(string $name): mixed
     {
         $propertyExists = $this->propertyExists($name);
 
@@ -125,11 +133,14 @@ class ObjectDecapsulator
      * Magically call object choosen method.
      * Called when method is called directly by the method name.
      *
-     * @param string       $name
+     * @param string $name
      * @param array[mixed] $arguments
+     *
      * @return mixed
+     *
+     * @throws \InvalidArgumentException
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         $methodExists = $this->methodExists($name);
 
@@ -149,9 +160,10 @@ class ObjectDecapsulator
      * Check object is valid instance of the class.
      *
      * @param mixed $object
+     *
      * @return bool
      */
-    private static function objectIsValid($object)
+    private static function objectIsValid(mixed $object): bool
     {
         $objectType = gettype($object);
         $objectIsValid = ($objectType === self::VALID_OBJECT_TYPE);
@@ -163,9 +175,10 @@ class ObjectDecapsulator
      * Create ObjectDecapsulator instance wrapped given object.
      *
      * @param mixed $object
-     * @return \Decapsulator\ObjectDecapsulator
+     *
+     * @return ObjectDecapsulator
      */
-    private static function createInstanceFromObject($object)
+    private static function createInstanceFromObject(mixed $object): ObjectDecapsulator
     {
         $instance = new self();
         $instance->setUpWithObject($object);
@@ -178,7 +191,7 @@ class ObjectDecapsulator
      *
      * @param mixed $object
      */
-    private function setUpWithObject($object)
+    private function setUpWithObject(mixed $object): void
     {
         $this->setObject($object);
         $this->setUpReflection();
@@ -189,7 +202,7 @@ class ObjectDecapsulator
      *
      * @param mixed $object
      */
-    private function setObject($object)
+    private function setObject(mixed $object): void
     {
         $this->object = $object;
     }
@@ -197,7 +210,7 @@ class ObjectDecapsulator
     /**
      * Set-up reflection for decapsulated object.
      */
-    private function setUpReflection()
+    private function setUpReflection(): void
     {
         $className = get_class($this->object);
         $this->reflection = new \ReflectionClass($className);
@@ -207,10 +220,12 @@ class ObjectDecapsulator
      * Check object property with given name exists.
      *
      * @param string $name
-     * @throws \UnexpectedValueException
+     *
      * @return boolean
+     *
+     * @throws \UnexpectedValueException
      */
-    private function propertyExists($name)
+    private function propertyExists(string $name): bool
     {
         $className = get_class($this->object);
         $propertyExists = property_exists($className, $name);
@@ -222,10 +237,10 @@ class ObjectDecapsulator
      * Check object method with given name exists.
      *
      * @param string $name
-     * @throws \UnexpectedValueException
+     *
      * @return boolean
      */
-    private function methodExists($name)
+    private function methodExists(string $name): bool
     {
         $methodExists = method_exists($this->object, $name);
 
@@ -238,7 +253,7 @@ class ObjectDecapsulator
      * @param string $name
      * @param mixed $value
      */
-    private function setProperty($name, $value)
+    private function setProperty(string $name, mixed $value): void
     {
         $property = $this->reflection->getProperty($name);
         $property->setAccessible(true);
@@ -249,9 +264,10 @@ class ObjectDecapsulator
      * Get value of the given object property.
      *
      * @param string $name
+     *
      * @return mixed
      */
-    private function getProperty($name)
+    private function getProperty(string $name): mixed
     {
         $property = $this->reflection->getProperty($name);
         $property->setAccessible(true);
@@ -263,11 +279,12 @@ class ObjectDecapsulator
     /**
      * Call given object method.
      *
-     * @param string       $name
+     * @param string $name
      * @param array[mixed] $arguments
+     *
      * @return mixed
      */
-    private function callMethod($name, $arguments = array())
+    private function callMethod(string $name, array $arguments = []): mixed
     {
         $method = $this->reflection->getMethod($name);
         $method->setAccessible(true);

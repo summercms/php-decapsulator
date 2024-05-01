@@ -30,7 +30,7 @@ class GetPropertyTest extends AbstractPropertyAccessorsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'getProperty';
     }
@@ -40,9 +40,10 @@ class GetPropertyTest extends AbstractPropertyAccessorsTestCase
      * gets property value correctly.
      *
      * @dataProvider existingPropertiesProvider
+     *
      * @param string $property
      */
-    public function testGetsPropertyCorrectly($property)
+    public function testGetsPropertyCorrectly(string $property)
     {
         $expectedValue = 1024;
         $this->setDecapsulatedObjectProperty($property, $expectedValue);

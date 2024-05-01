@@ -36,5 +36,6 @@ abstract class AbstractStaticMethodsTestCase extends AbstractObjectDecapsulatorT
         $this->initDeapsulatedObjectReflection();
         $this->initDecapsulatedObject();
         $this->initDecapsulatorReflection();
+        $this->initDecapsulator();
     }
 }

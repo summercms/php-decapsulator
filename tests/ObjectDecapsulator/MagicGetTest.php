@@ -45,9 +45,10 @@ class MagicGetTest extends AbstractPropertyAccessorsTestCase
      * gets property value correctly.
      *
      * @dataProvider existingPropertiesProvider
+     *
      * @param string $property
      */
-    public function testGetsPropertyCorrectly($property)
+    public function testGetsPropertyCorrectly(string $property)
     {
         $expectedValue =  4;
         $this->setDecapsulatedObjectProperty($property, $expectedValue);

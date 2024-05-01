@@ -30,7 +30,7 @@ class SetPropertyTest extends AbstractPropertyAccessorsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'setProperty';
     }
@@ -40,9 +40,10 @@ class SetPropertyTest extends AbstractPropertyAccessorsTestCase
      * sets given property value correctly.
      *
      * @dataProvider existingPropertiesProvider
+     *
      * @param string $property
      */
-    public function testSetsPropertyCorrectly($property)
+    public function testSetsPropertyCorrectly(string $property)
     {
         $expectedValue = 1024;
 

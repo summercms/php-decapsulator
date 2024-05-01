@@ -30,7 +30,7 @@ class PropertyExistsTest extends AbstractPropertyAccessorsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'propertyExists';
     }
@@ -53,9 +53,10 @@ class PropertyExistsTest extends AbstractPropertyAccessorsTestCase
      * returns true when the property exists.
      *
      * @dataProvider existingPropertiesProvider
+     *
      * @param string $propertyName
      */
-    public function testReturnsTrueWhenPropertyExists($propertyName)
+    public function testReturnsTrueWhenPropertyExists(string $propertyName)
     {
         $arguments = array($propertyName);
 

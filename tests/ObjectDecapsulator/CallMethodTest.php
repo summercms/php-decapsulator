@@ -30,7 +30,7 @@ class CallMethodTest extends AbstractMethodAccessorsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'callMethod';
     }

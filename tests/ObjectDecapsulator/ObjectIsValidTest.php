@@ -30,7 +30,7 @@ class ObjectIsValidTest extends AbstractStaticMethodsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'objectIsValid';
     }

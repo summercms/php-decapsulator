@@ -30,7 +30,7 @@ class MethodExistsTest extends AbstractMethodAccessorsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'methodExists';
     }
@@ -53,9 +53,10 @@ class MethodExistsTest extends AbstractMethodAccessorsTestCase
      * returns true when the method exists.
      *
      * @dataProvider existingMethodsProvider
+     *
      * @param string $methodName
      */
-    public function testReturnsTrueWhenMethodExists($methodName)
+    public function testReturnsTrueWhenMethodExists(string $methodName)
     {
         $arguments = array($methodName);
 
