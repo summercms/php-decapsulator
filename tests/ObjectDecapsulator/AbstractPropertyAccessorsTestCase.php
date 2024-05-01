@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorTest
+abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsulatorTestCase
 {
     /**
      * Names of the decapsulated object class properties.
@@ -37,10 +37,12 @@ abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorT
     const PRIVATE_PROPERTY = 'privateProperty';
 
     /**
-     * Set up the fixtures and helpers.
-     * Called before a test is executed.
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->initDeapsulatedObjectReflection();
         $this->initDecapsulatedObject();
@@ -82,7 +84,7 @@ abstract class AbstractPropertyAccessorsTest extends AbstractObjectDecapsulatorT
      *
      * @return array[string]
      */
-    public function existingPropertiesProvider()
+    public static function existingPropertiesProvider()
     {
         $existingProperties = array(
             array(self::PUBLIC_STATIC_PROPERTY),

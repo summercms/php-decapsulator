@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class SetPropertyTest extends AbstractPropertyAccessorsTest
+class SetPropertyTest extends AbstractPropertyAccessorsTestCase
 {
     /**
      * Provide tested method name.

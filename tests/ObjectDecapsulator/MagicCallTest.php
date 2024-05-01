@@ -21,17 +21,17 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicCallTest extends AbstractMethodAccessorsTest
+class MagicCallTest extends AbstractMethodAccessorsTestCase
 {
     /**
      * Test _call($name, $arguments) magic method throws InvalidObjectException
      * when the called method does not exist.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Method does not exist.
      */
     public function testThrowsExceptionWhenMethodDoesNotExist()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Method does not exist.');
+
         $method = self::NONEXISTENT_METHOD;
 
         $this->decapsulator->$method(4);

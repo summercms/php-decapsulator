@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class CreateInstanceFromObjectTest extends AbstractStaticMethodsTest
+class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
 {
     /**
      * Provide tested method name.

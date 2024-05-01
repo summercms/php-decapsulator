@@ -21,18 +21,18 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicGetTest extends AbstractPropertyAccessorsTest
+class MagicGetTest extends AbstractPropertyAccessorsTestCase
 {
     /**
      * Test __get($name) magic method
      * throws InvalidObjectException
      * when the property does not exist.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Property does not exist.
      */
     public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Property does not exist.');
+
         $property = self::NONEXISTENT_PROPERTY;
 
         $this->decapsulator->$property;

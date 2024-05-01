@@ -23,7 +23,7 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class BuildForObjectTest extends AbstractStaticMethodsTest
+class BuildForObjectTest extends AbstractStaticMethodsTestCase
 {
     /**
      * Provide tested method name.
@@ -38,12 +38,12 @@ class BuildForObjectTest extends AbstractStaticMethodsTest
     /**
      * Test buildForObject($object) method
      * throws InvalidObjectException when $object is not valid.
-     *
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Argument is not an object.
      */
     public function testThrowsExceptionForNotValidObject()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Argument is not an object.');
+
         $object = 4;
         $arguments = array($object);
 

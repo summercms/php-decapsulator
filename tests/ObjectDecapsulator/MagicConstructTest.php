@@ -21,7 +21,7 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicConstructTest extends AbstractPropertyAccessorsTest
+class MagicConstructTest extends AbstractPropertyAccessorsTestCase
 {
     /**
      * Test __construct() magic method
