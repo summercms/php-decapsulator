@@ -40,10 +40,11 @@ class CallMethodTest extends AbstractMethodAccessorsTestCase
      * calls method without argument correctly.
      *
      * @dataProvider noArgumentsMethodsAndReturnedValuesProvider
+     *
      * @param string $method
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodWithNoArgumentsCorrectly($method, $expectedReturnedValue)
+    public function testCallsMethodWithNoArgumentsCorrectly(string $method, string $expectedReturnedValue)
     {
         $arguments = [$method];
 
@@ -57,11 +58,12 @@ class CallMethodTest extends AbstractMethodAccessorsTestCase
      * calls method with arguments correctly.
      *
      * @dataProvider argumentsMethodsAndReturnedValuesProvider
-     * @param string       $method
-     * @param array[mixed] $methodArguments
-     * @param string       $expectedReturnedValue
+     *
+     * @param string $method
+     * @param mixed[] $methodArguments
+     * @param string $expectedReturnedValue
      */
-    public function testCallsMethodWithArgumentsCorrectly($method, $methodArguments, $expectedReturnedValue)
+    public function testCallsMethodWithArgumentsCorrectly(string $method, array $methodArguments, string $expectedReturnedValue)
     {
         $arguments = [
             $method,

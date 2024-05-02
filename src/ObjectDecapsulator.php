@@ -61,11 +61,11 @@ class ObjectDecapsulator
      *
      * @param mixed $object
      *
-     * @return ObjectDecapsulator
+     * @return self
      *
      * @throws \InvalidArgumentException
      */
-    public static function buildForObject(mixed $object): ObjectDecapsulator
+    public static function buildForObject(mixed $object): self
     {
         if (self::objectIsValid($object)) {
             $decapsulator = self::createInstanceFromObject($object);
@@ -134,7 +134,7 @@ class ObjectDecapsulator
      * Called when method is called directly by the method name.
      *
      * @param string $name
-     * @param array[mixed] $arguments
+     * @param mixed[] $arguments
      *
      * @return mixed
      *

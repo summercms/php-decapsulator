@@ -28,7 +28,7 @@ abstract class AbstractMethodAccessorsTestCase extends AbstractObjectDecapsulato
     /**
      * Names of fixture class methods.
      *
-     * @var unknown
+     * @var string
      */
     protected const NONEXISTENT_METHOD = 'nonexistentMethod';
     private const PUBLIC_STATIC_METHOD_WITH_NO_ARGUMENTS = 'publicStaticMethodWithNoArguments';
