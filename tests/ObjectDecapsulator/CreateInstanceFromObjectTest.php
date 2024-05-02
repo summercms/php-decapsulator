@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Decapsulator package.
  *
@@ -12,13 +14,13 @@
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * CreateInstanceFromObjectTest.
+ * Test for createInstanceFromObject.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://http://opensource.org/licenses/MIT MIT License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
@@ -28,7 +30,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'createInstanceFromObject';
     }
@@ -39,7 +41,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      */
     public function testReturnsCorrectInstance()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 
@@ -52,7 +54,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      */
     public function testSetsObjectCorrectly()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 
@@ -67,7 +69,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      */
     public function testSetsReflectionCorrectly()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 

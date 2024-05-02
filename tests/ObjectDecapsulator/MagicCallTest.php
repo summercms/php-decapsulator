@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Decapsulator package.
  *
@@ -12,13 +14,13 @@
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * MagicCallTest.
+ * Magic call test.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://http://opensource.org/licenses/MIT MIT License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class MagicCallTest extends AbstractMethodAccessorsTestCase
@@ -41,10 +43,11 @@ class MagicCallTest extends AbstractMethodAccessorsTestCase
      * Test _call($name, $arguments) magic method calls method with no arguments correctly.
      *
      * @dataProvider noArgumentsMethodsAndReturnedValuesProvider
+     *
      * @param string $method
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodMethodWithNoArgumentsCorrectly($method, $expectedReturnedValue)
+    public function testCallsMethodMethodWithNoArgumentsCorrectly(string $method, string $expectedReturnedValue)
     {
         $actualReturnedValue = $this->decapsulator->$method();
 
@@ -55,11 +58,12 @@ class MagicCallTest extends AbstractMethodAccessorsTestCase
      * Test _call($name, $arguments) magic method calls method with arguments correctly.
      *
      * @dataProvider argumentsMethodsAndReturnedValuesProvider
-     * @param string       $method
-     * @param array[mixed] $arguments
-     * @param string       $expectedReturnedValue
+     *
+     * @param string $method
+     * @param mixed[] $arguments
+     * @param string $expectedReturnedValue
      */
-    public function testCallsMethodMethodWithArgumentsCorrectly($method, $arguments, $expectedReturnedValue)
+    public function testCallsMethodMethodWithArgumentsCorrectly(string $method, array $arguments, string $expectedReturnedValue)
     {
         $actualReturnedValue = $this->decapsulator->$method($arguments[0], $arguments[1]);
 

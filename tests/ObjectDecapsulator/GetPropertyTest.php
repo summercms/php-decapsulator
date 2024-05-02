@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Decapsulator package.
  *
@@ -12,13 +14,13 @@
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * GetPropertyTest.
+ * Test for getProperty method.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://http://opensource.org/licenses/MIT MIT License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class GetPropertyTest extends AbstractPropertyAccessorsTestCase
@@ -28,7 +30,7 @@ class GetPropertyTest extends AbstractPropertyAccessorsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'getProperty';
     }
@@ -38,14 +40,15 @@ class GetPropertyTest extends AbstractPropertyAccessorsTestCase
      * gets property value correctly.
      *
      * @dataProvider existingPropertiesProvider
+     *
      * @param string $property
      */
-    public function testGetsPropertyCorrectly($property)
+    public function testGetsPropertyCorrectly(string $property)
     {
         $expectedValue = 1024;
         $this->setDecapsulatedObjectProperty($property, $expectedValue);
 
-        $arguments = array($property);
+        $arguments = [$property];
 
         $actualValue = $this->callTestedMethod($arguments);
 

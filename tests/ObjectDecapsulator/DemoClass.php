@@ -12,13 +12,13 @@
 namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
- * DemoClass.
+ * Demo class.
  * Fixture class for DecapsulatorTest test class.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://framework.zend.com/license/new-bsd New BSD License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class DemoClass
@@ -100,6 +100,7 @@ class DemoClass
      *
      * @param mixed $argument1
      * @param mixed $argument2
+     *
      * @return string
      */
     public static function publicStaticMethodWithArguments($argument1, $argument2)
@@ -112,6 +113,7 @@ class DemoClass
      *
      * @param mixed $argument1
      * @param mixed $argument2
+     *
      * @return string
      */
     protected static function protectedStaticMethodWithArguments($argument1, $argument2)
@@ -124,6 +126,7 @@ class DemoClass
      *
      * @param mixed $argument1
      * @param mixed $argument2
+     *
      * @return string
      */
     private static function privateStaticMethodWithArguments($argument1, $argument2)
@@ -166,6 +169,7 @@ class DemoClass
      *
      * @param mixed $argument1
      * @param mixed $argument2
+     *
      * @return string
      */
     public function publicMethodWithArguments($argument1, $argument2)
@@ -178,6 +182,7 @@ class DemoClass
      *
      * @param mixed $argument1
      * @param mixed $argument2
+     *
      * @return string
      */
     protected function protectedMethodWithArguments($argument1, $argument2)
@@ -190,6 +195,7 @@ class DemoClass
      *
      * @param mixed $argument1
      * @param mixed $argument2
+     *
      * @return string
      */
     private function privateMethodWithArguments($argument1, $argument2)

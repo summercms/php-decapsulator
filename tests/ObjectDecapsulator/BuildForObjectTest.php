@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Decapsulator package.
  *
@@ -14,13 +16,13 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
 use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * BuildForObjectTest.
+ * Test of buildForObject method.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
- * @license http://http://opensource.org/licenses/MIT MIT License
+ * @copyright Copyright (c) Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
 class BuildForObjectTest extends AbstractStaticMethodsTestCase
@@ -30,7 +32,7 @@ class BuildForObjectTest extends AbstractStaticMethodsTestCase
      *
      * @param string $name
      */
-    protected function provideTestedMethodName()
+    protected function provideTestedMethodName(): string
     {
         return 'buildForObject';
     }
@@ -45,7 +47,7 @@ class BuildForObjectTest extends AbstractStaticMethodsTestCase
         $this->expectExceptionMessage('Argument is not an object.');
 
         $object = 4;
-        $arguments = array($object);
+        $arguments = [$object];
 
         $returnedValue = $this->callTestedMethod($arguments);
     }
