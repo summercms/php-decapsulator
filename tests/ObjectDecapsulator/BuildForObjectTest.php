@@ -47,7 +47,7 @@ class BuildForObjectTest extends AbstractStaticMethodsTestCase
         $this->expectExceptionMessage('Argument is not an object.');
 
         $object = 4;
-        $arguments = array($object);
+        $arguments = [$object];
 
         $returnedValue = $this->callTestedMethod($arguments);
     }

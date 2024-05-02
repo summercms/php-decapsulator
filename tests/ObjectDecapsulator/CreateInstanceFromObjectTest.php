@@ -41,7 +41,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      */
     public function testReturnsCorrectInstance()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 
@@ -54,7 +54,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      */
     public function testSetsObjectCorrectly()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 
@@ -69,7 +69,7 @@ class CreateInstanceFromObjectTest extends AbstractStaticMethodsTestCase
      */
     public function testSetsReflectionCorrectly()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->decapsulator = $this->callTestedMethod($arguments);
 

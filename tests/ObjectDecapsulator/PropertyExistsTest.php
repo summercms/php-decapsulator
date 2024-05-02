@@ -41,7 +41,7 @@ class PropertyExistsTest extends AbstractPropertyAccessorsTestCase
      */
     public function testReturnsFalseWhenPropertyDoesNotExist()
     {
-        $arguments = array(self::NONEXISTENT_PROPERTY);
+        $arguments = [self::NONEXISTENT_PROPERTY];
 
         $propertyExists = $this->callTestedMethod($arguments);
 
@@ -58,7 +58,7 @@ class PropertyExistsTest extends AbstractPropertyAccessorsTestCase
      */
     public function testReturnsTrueWhenPropertyExists(string $propertyName)
     {
-        $arguments = array($propertyName);
+        $arguments = [$propertyName];
 
         $propertyExists = $this->callTestedMethod($arguments);
 

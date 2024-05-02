@@ -89,14 +89,14 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
      */
     public static function existingPropertiesProvider(): array
     {
-        $existingProperties = array(
-            array(self::PUBLIC_STATIC_PROPERTY),
-            array(self::PROTECTED_STATIC_PROPERTY),
-            array(self::PRIVATE_STATIC_PROPERTY),
-            array(self::PUBLIC_PROPERTY),
-            array(self::PROTECTED_PROPERTY),
-            array(self::PRIVATE_PROPERTY),
-        );
+        $existingProperties = [
+            [self::PUBLIC_STATIC_PROPERTY],
+            [self::PROTECTED_STATIC_PROPERTY],
+            [self::PRIVATE_STATIC_PROPERTY],
+            [self::PUBLIC_PROPERTY],
+            [self::PROTECTED_PROPERTY],
+            [self::PRIVATE_PROPERTY],
+        ];
 
         return $existingProperties;
     }

@@ -41,7 +41,7 @@ class MethodExistsTest extends AbstractMethodAccessorsTestCase
      */
     public function testReturnsFalseWhenMethodDoesNotExist()
     {
-        $arguments = array(self::NONEXISTENT_METHOD);
+        $arguments = [self::NONEXISTENT_METHOD];
 
         $methodExists = $this->callTestedMethod($arguments);
 
@@ -58,7 +58,7 @@ class MethodExistsTest extends AbstractMethodAccessorsTestCase
      */
     public function testReturnsTrueWhenMethodExists(string $methodName)
     {
-        $arguments = array($methodName);
+        $arguments = [$methodName];
 
         $methodExists = $this->callTestedMethod($arguments);
 

@@ -48,7 +48,7 @@ class GetPropertyTest extends AbstractPropertyAccessorsTestCase
         $expectedValue = 1024;
         $this->setDecapsulatedObjectProperty($property, $expectedValue);
 
-        $arguments = array($property);
+        $arguments = [$property];
 
         $actualValue = $this->callTestedMethod($arguments);
 

@@ -47,10 +47,10 @@ class SetPropertyTest extends AbstractPropertyAccessorsTestCase
     {
         $expectedValue = 1024;
 
-        $arguments = array(
+        $arguments = [
             $property,
             $expectedValue,
-        );
+        ];
 
         $this->callTestedMethod($arguments);
 

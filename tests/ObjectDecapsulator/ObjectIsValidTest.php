@@ -42,7 +42,7 @@ class ObjectIsValidTest extends AbstractStaticMethodsTestCase
     public function testReturnsFalseForBuildinType()
     {
         $object = 4;
-        $arguments = array($object);
+        $arguments = [$object];
 
         $objectIsValid = $this->callTestedMethod($arguments);
 
@@ -55,7 +55,7 @@ class ObjectIsValidTest extends AbstractStaticMethodsTestCase
      */
     public function testReturnsTrueForObject()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $objectIsValid = $this->callTestedMethod($arguments);
 

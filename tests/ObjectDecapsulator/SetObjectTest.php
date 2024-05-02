@@ -41,7 +41,7 @@ class SetObjectTest extends AbstractNonStaticMethodsTestCase
      */
     public function testSetObjectSetsObjectCorrectly()
     {
-        $arguments = array($this->decapsulatedObject);
+        $arguments = [$this->decapsulatedObject];
 
         $this->callTestedMethod($arguments);
 

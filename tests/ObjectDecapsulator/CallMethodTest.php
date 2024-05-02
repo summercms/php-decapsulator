@@ -45,7 +45,7 @@ class CallMethodTest extends AbstractMethodAccessorsTestCase
      */
     public function testCallsMethodWithNoArgumentsCorrectly($method, $expectedReturnedValue)
     {
-        $arguments = array($method);
+        $arguments = [$method];
 
         $actualReturnedValue = $this->callTestedMethod($arguments);
 
@@ -63,10 +63,10 @@ class CallMethodTest extends AbstractMethodAccessorsTestCase
      */
     public function testCallsMethodWithArgumentsCorrectly($method, $methodArguments, $expectedReturnedValue)
     {
-        $arguments = array(
+        $arguments = [
             $method,
             $methodArguments,
-        );
+        ];
 
         $actualReturnedValue = $this->callTestedMethod($arguments);
 
