@@ -101,8 +101,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      */
     protected function initDeapsulatedObjectReflection(): void
     {
-        $class = self::DECAPSULATED_OBJECT_CLASS;
-        $this->decapsulatedObjectReflection = new \ReflectionClass($class);
+        $this->decapsulatedObjectReflection = new \ReflectionClass(self::DECAPSULATED_OBJECT_CLASS);
     }
 
     /**
@@ -119,8 +118,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      */
     protected function initDecapsulatorReflection(): void
     {
-        $class = self::DECAPSULATOR_CLASS;
-        $this->decapsulatorReflection = new \ReflectionClass($class);
+        $this->decapsulatorReflection = new \ReflectionClass(self::DECAPSULATOR_CLASS);
     }
 
     /**
