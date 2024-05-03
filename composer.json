@@ -33,6 +33,11 @@
                 "tests/fixtures/"
             ]
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit ./tests",
+        "sniff": "vendor/bin/phpcs ./src ./tests",
+        "check": "composer test; composer sniff"
     }
 }
 
