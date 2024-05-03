@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
- * Test for getProperty method.
+ * Magic get test.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,20 +23,25 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class GetPropertyTest extends AbstractPropertyAccessorsTestCase
+class MagicGetTest extends AbstractPropertyAccessorsTestCase
 {
     /**
-     * Provide tested method name.
-     *
-     * @param string $name
+     * Test __get($name) magic method
+     * throws InvalidObjectException
+     * when the property does not exist.
      */
-    protected function provideTestedMethodName(): string
+    public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
-        return 'getProperty';
+        $property = self::NONEXISTENT_PROPERTY;
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage("Property '{$property}' does not exist.");
+
+        $this->decapsulator->$property;
     }
 
     /**
-     * Test getProperty($name) method
+     * Test __get($name, $value) magic method
      * gets property value correctly.
      *
      * @dataProvider existingPropertiesProvider
@@ -45,12 +50,10 @@ class GetPropertyTest extends AbstractPropertyAccessorsTestCase
      */
     public function testGetsPropertyCorrectly(string $property)
     {
-        $expectedValue = 1024;
+        $expectedValue =  rand();
         $this->setDecapsulatedObjectProperty($property, $expectedValue);
 
-        $arguments = [$property];
-
-        $actualValue = $this->callTestedMethod($arguments);
+        $actualValue = $this->decapsulator->$property;
 
         $this->assertEquals($expectedValue, $actualValue);
     }

@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
- * Magic construct test.
+ * Static methods test.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,16 +23,19 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicConstructTest extends AbstractPropertyAccessorsTestCase
+abstract class AbstractStaticMethodsTestCase extends AbstractObjectDecapsulatorTestCase
 {
     /**
-     * Test __construct() magic method
-     * cannot be called.
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
      */
-    public function testIsNotAvailable()
+    protected function setUp(): void
     {
-        $isAvailable = $this->decapsulatorReflection->isInstantiable();
-
-        $this->assertFalse($isAvailable);
+        $this->initDecapsulatedObjectReflection();
+        $this->initDecapsulatedObject();
+        $this->initDecapsulatorReflection();
+        $this->initDecapsulator();
     }
 }

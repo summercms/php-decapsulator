@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Object decapsulator magic accessors test.
@@ -46,7 +46,7 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
      */
     protected function setUp(): void
     {
-        $this->initDeapsulatedObjectReflection();
+        $this->initDecapsulatedObjectReflection();
         $this->initDecapsulatedObject();
         $this->initDecapsulatorReflection();
         $this->initDecapsulator();

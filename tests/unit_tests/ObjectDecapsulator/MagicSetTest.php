@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
- * Magic get test.
+ * Magic set test.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,37 +23,37 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class MagicGetTest extends AbstractPropertyAccessorsTestCase
+class MagicSetTest extends AbstractPropertyAccessorsTestCase
 {
     /**
-     * Test __get($name) magic method
+     * Test __set($name, $value) magic method
      * throws InvalidObjectException
      * when the property does not exist.
      */
     public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('Property does not exist.');
-
         $property = self::NONEXISTENT_PROPERTY;
 
-        $this->decapsulator->$property;
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage("Property '{$property}' does not exist.");
+
+        $this->decapsulator->$property = 4;
     }
 
     /**
-     * Test __get($name, $value) magic method
-     * gets property value correctly.
+     * Test __set($name, $value) magic method
+     * sets given property value correctly.
      *
      * @dataProvider existingPropertiesProvider
      *
      * @param string $property
      */
-    public function testGetsPropertyCorrectly(string $property)
+    public function testSetsPropertyCorrectly(string $property)
     {
-        $expectedValue =  4;
-        $this->setDecapsulatedObjectProperty($property, $expectedValue);
+        $expectedValue = rand();
+        $this->decapsulator->$property = $expectedValue;
 
-        $actualValue = $this->decapsulator->$property;
+        $actualValue = $this->getDecapsulatedObjectProperty($property);
 
         $this->assertEquals($expectedValue, $actualValue);
     }

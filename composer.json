@@ -23,13 +23,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Exorg\\Decapsulator\\": "src/"
+            "ExOrg\\Decapsulator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Exorg\\Decapsulator\\": "tests/"
+            "ExOrg\\Decapsulator\\": [
+                "tests/unit_tests/",
+                "tests/fixtures/"
+            ]
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit ./tests",
+        "sniff": "vendor/bin/phpcs ./src ./tests",
+        "check": "composer test; composer sniff"
     }
 }
 

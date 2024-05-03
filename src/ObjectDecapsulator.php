@@ -67,16 +67,13 @@ class ObjectDecapsulator
      */
     public static function buildForObject(mixed $object): self
     {
-        if (self::objectIsValid($object)) {
-            $decapsulator = self::createInstanceFromObject($object);
-
-            return $decapsulator;
-        } else {
-            $message = 'Argument is not an object.';
-            $exception = new \InvalidArgumentException($message);
-
-            throw $exception;
+        if (! self::objectIsValid($object)) {
+            throw new \InvalidArgumentException('Argument is not an object.');
         }
+
+        $decapsulator = self::createInstanceFromObject($object);
+
+        return $decapsulator;
     }
 
     /**
@@ -91,16 +88,11 @@ class ObjectDecapsulator
      */
     public function __set(string $name, mixed $value): void
     {
-        $propertyExists = $this->propertyExists($name);
-
-        if ($propertyExists) {
-            $this->setProperty($name, $value);
-        } else {
-            $message = 'Property does not exist.';
-            $exception = new \InvalidArgumentException($message);
-
-            throw $exception;
+        if (! $this->propertyExists($name)) {
+            throw new \InvalidArgumentException("Property '{$name}' does not exist.");
         }
+
+        $this->setProperty($name, $value);
     }
 
     /**
@@ -115,18 +107,13 @@ class ObjectDecapsulator
      */
     public function __get(string $name): mixed
     {
-        $propertyExists = $this->propertyExists($name);
-
-        if ($propertyExists) {
-            $value = $this->getProperty($name);
-
-            return $value;
-        } else {
-            $message = 'Property does not exist.';
-            $exception = new \InvalidArgumentException($message);
-
-            throw $exception;
+        if (! $this->propertyExists($name)) {
+            throw new \InvalidArgumentException("Property '{$name}' does not exist.");
         }
+
+        $property = $this->getProperty($name);
+
+        return $property;
     }
 
     /**
@@ -142,18 +129,13 @@ class ObjectDecapsulator
      */
     public function __call(string $name, array $arguments): mixed
     {
-        $methodExists = $this->methodExists($name);
-
-        if ($methodExists) {
-            $result = $this->callMethod($name, $arguments);
-
-            return $result;
-        } else {
-            $message = 'Method does not exist.';
-            $exception = new \InvalidArgumentException($message);
-
-            throw $exception;
+        if (! $this->methodExists($name)) {
+            throw new \InvalidArgumentException("Method '{$name}' does not exist.");
         }
+
+        $result = $this->callMethod($name, $arguments);
+
+        return $result;
     }
 
     /**

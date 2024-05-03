@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Magic call test.
@@ -31,10 +31,10 @@ class MagicCallTest extends AbstractMethodAccessorsTestCase
      */
     public function testThrowsExceptionWhenMethodDoesNotExist()
     {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('Method does not exist.');
-
         $method = self::NONEXISTENT_METHOD;
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage("Method '{$method}' does not exist.");
 
         $this->decapsulator->$method(4);
     }

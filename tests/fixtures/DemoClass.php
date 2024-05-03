@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator;
 
 /**
  * Demo class.

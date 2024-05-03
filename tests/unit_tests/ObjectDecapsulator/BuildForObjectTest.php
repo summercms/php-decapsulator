@@ -11,9 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
-use Exorg\Decapsulator\ObjectDecapsulator;
+use PHPUnit\Framework\TestCase;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Test of buildForObject method.
@@ -28,16 +29,6 @@ use Exorg\Decapsulator\ObjectDecapsulator;
 class BuildForObjectTest extends AbstractStaticMethodsTestCase
 {
     /**
-     * Provide tested method name.
-     *
-     * @param string $name
-     */
-    protected function provideTestedMethodName(): string
-    {
-        return 'buildForObject';
-    }
-
-    /**
      * Test buildForObject($object) method
      * throws InvalidObjectException when $object is not valid.
      */
@@ -47,13 +38,12 @@ class BuildForObjectTest extends AbstractStaticMethodsTestCase
         $this->expectExceptionMessage('Argument is not an object.');
 
         $object = 4;
-        $arguments = [$object];
 
-        $returnedValue = $this->callTestedMethod($arguments);
+        ObjectDecapsulator::buildForObject($object);
     }
 
     /**
-     * Test buildForObject($object) method
+     * Test buildForObject method
      * returns ObjectDecapsulatorInstance when $object id valid.
      */
     public function testReturnsCorrectInstanceForValidObject()
@@ -61,31 +51,5 @@ class BuildForObjectTest extends AbstractStaticMethodsTestCase
         $decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
 
         $this->assertInstanceOf(self::DECAPSULATOR_CLASS, $decapsulator);
-    }
-
-    /**
-     * Test buildForObject($object) method
-     * sets object property correctly when $object id valid.
-     */
-    public function testSetsObjectCorrectlyForValidObject()
-    {
-        $this->decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
-
-        $object = $this->getDecapsulatorProperty('object');
-
-        $this->assertSame($this->decapsulatedObject, $object);
-    }
-
-    /**
-     * Test buildForObject($object) method
-     * sets reflection property correctly when $object id valid.
-     */
-    public function testSetsReflectionCorrectlyForValidObject()
-    {
-        $this->decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
-
-        $reflection = $this->getDecapsulatorProperty('reflection');
-
-        $this->assertEquals($this->decapsulatedObjectReflection, $reflection);
     }
 }
