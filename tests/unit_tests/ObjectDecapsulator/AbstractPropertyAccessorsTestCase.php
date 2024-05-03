@@ -46,7 +46,7 @@ abstract class AbstractPropertyAccessorsTestCase extends AbstractObjectDecapsula
      */
     protected function setUp(): void
     {
-        $this->initDeapsulatedObjectReflection();
+        $this->initDecapsulatedObjectReflection();
         $this->initDecapsulatedObject();
         $this->initDecapsulatorReflection();
         $this->initDecapsulator();

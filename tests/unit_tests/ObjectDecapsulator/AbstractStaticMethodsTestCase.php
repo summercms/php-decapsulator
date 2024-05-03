@@ -33,7 +33,7 @@ abstract class AbstractStaticMethodsTestCase extends AbstractObjectDecapsulatorT
      */
     protected function setUp(): void
     {
-        $this->initDeapsulatedObjectReflection();
+        $this->initDecapsulatedObjectReflection();
         $this->initDecapsulatedObject();
         $this->initDecapsulatorReflection();
         $this->initDecapsulator();

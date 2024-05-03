@@ -29,14 +29,14 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
 abstract class AbstractObjectDecapsulatorTestCase extends TestCase
 {
     /**
-     * Full qualified name of the decapsulated object class.
+     * Fully qualified name of the decapsulated object class.
      *
      * @var string
      */
     private const DECAPSULATED_OBJECT_CLASS = '\ExOrg\Decapsulator\DemoClass';
 
     /**
-     * Full qualified name of dacapsulator class.
+     * Fully qualified name of dacapsulator class.
      *
      * @var string
      */
@@ -74,7 +74,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Initialize reflection for the decapsulated object fixture class.
      */
-    protected function initDeapsulatedObjectReflection(): void
+    protected function initDecapsulatedObjectReflection(): void
     {
         $this->decapsulatedObjectReflection = new \ReflectionClass(self::DECAPSULATED_OBJECT_CLASS);
     }
@@ -110,7 +110,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     protected function setUpDecapsulator(): void
     {
         $this->setUpDecapsulatedObjectReflectionWithinDecapsulator();
-        $this->setUpDecapsualatedObjectWithinDecapsulator();
+        $this->setUpDecapsulatedObjectWithinDecapsulator();
     }
 
     /**
@@ -155,7 +155,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Set up decapsulated object instance property of tested class instance.
      */
-    private function setUpDecapsualatedObjectWithinDecapsulator(): void
+    private function setUpDecapsulatedObjectWithinDecapsulator(): void
     {
         $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
     }
