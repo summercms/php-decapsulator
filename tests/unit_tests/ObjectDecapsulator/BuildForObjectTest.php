@@ -28,16 +28,6 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
  */
 class BuildForObjectTest extends AbstractStaticMethodsTestCase
 {
-    // /**
-    //  * Provide tested method name.
-    //  *
-    //  * @param string $name
-    //  */
-    // protected function provideTestedMethodName(): string
-    // {
-    //     return 'buildForObject';
-    // }
-
     /**
      * Test buildForObject($object) method
      * throws InvalidObjectException when $object is not valid.
@@ -62,30 +52,4 @@ class BuildForObjectTest extends AbstractStaticMethodsTestCase
 
         $this->assertInstanceOf(self::DECAPSULATOR_CLASS, $decapsulator);
     }
-
-    // /**
-    //  * Test buildForObject($object) method
-    //  * sets object property correctly when $object id valid.
-    //  */
-    // public function testSetsObjectCorrectlyForValidObject()
-    // {
-    //     $this->decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
-
-    //     $object = $this->getDecapsulatorProperty('object');
-
-    //     $this->assertSame($this->decapsulatedObject, $object);
-    // }
-
-    // /**
-    //  * Test buildForObject($object) method
-    //  * sets reflection property correctly when $object id valid.
-    //  */
-    // public function testSetsReflectionCorrectlyForValidObject()
-    // {
-    //     $this->decapsulator = ObjectDecapsulator::buildForObject($this->decapsulatedObject);
-
-    //     $reflection = $this->getDecapsulatorProperty('reflection');
-
-    //     $this->assertEquals($this->decapsulatedObjectReflection, $reflection);
-    // }
 }
