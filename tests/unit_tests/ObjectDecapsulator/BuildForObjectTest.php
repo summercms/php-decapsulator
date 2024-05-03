@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Test of buildForObject method.

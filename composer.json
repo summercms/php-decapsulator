@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Exorg\\Decapsulator\\": "src/"
+            "ExOrg\\Decapsulator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Exorg\\Decapsulator\\": [
+            "ExOrg\\Decapsulator\\": [
                 "tests/unit_tests/",
                 "tests/fixtures/"
             ]

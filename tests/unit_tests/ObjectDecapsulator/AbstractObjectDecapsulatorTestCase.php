@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Exorg\Decapsulator\ObjectDecapsulator;
+namespace ExOrg\Decapsulator\ObjectDecapsulator;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Object decapsulator test.
@@ -33,14 +33,14 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      *
      * @var string
      */
-    private const DECAPSULATED_OBJECT_CLASS = '\Exorg\Decapsulator\DemoClass';
+    private const DECAPSULATED_OBJECT_CLASS = '\ExOrg\Decapsulator\DemoClass';
 
     /**
      * Full qualified name of dacapsulator class.
      *
      * @var string
      */
-    protected const DECAPSULATOR_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator';
+    protected const DECAPSULATOR_CLASS = '\ExOrg\Decapsulator\ObjectDecapsulator';
 
     /**
      * Reflection for the fixture class.
