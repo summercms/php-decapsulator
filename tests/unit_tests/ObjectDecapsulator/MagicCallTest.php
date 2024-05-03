@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * Test for callMethod method.
+ * Magic call test.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,54 +23,49 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class CallMethodTest extends AbstractMethodAccessorsTestCase
+class MagicCallTest extends AbstractMethodAccessorsTestCase
 {
     /**
-     * Provide tested method name.
-     *
-     * @param string $name
+     * Test _call($name, $arguments) magic method throws InvalidObjectException
+     * when the called method does not exist.
      */
-    protected function provideTestedMethodName(): string
+    public function testThrowsExceptionWhenMethodDoesNotExist()
     {
-        return 'callMethod';
+        $method = self::NONEXISTENT_METHOD;
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage("Method '{$method}' does not exist.");
+
+        $this->decapsulator->$method(4);
     }
 
     /**
-     * Test callMethod($name, $arguments) method
-     * calls method without argument correctly.
+     * Test _call($name, $arguments) magic method calls method with no arguments correctly.
      *
      * @dataProvider noArgumentsMethodsAndReturnedValuesProvider
      *
      * @param string $method
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodWithNoArgumentsCorrectly(string $method, string $expectedReturnedValue)
+    public function testCallsMethodMethodWithNoArgumentsCorrectly(string $method, string $expectedReturnedValue)
     {
-        $arguments = [$method];
-
-        $actualReturnedValue = $this->callTestedMethod($arguments);
+        $actualReturnedValue = $this->decapsulator->$method();
 
         $this->assertEquals($expectedReturnedValue, $actualReturnedValue);
     }
 
     /**
-     * Test callMethod($name, $arguments) method
-     * calls method with arguments correctly.
+     * Test _call($name, $arguments) magic method calls method with arguments correctly.
      *
      * @dataProvider argumentsMethodsAndReturnedValuesProvider
      *
      * @param string $method
-     * @param mixed[] $methodArguments
+     * @param mixed[] $arguments
      * @param string $expectedReturnedValue
      */
-    public function testCallsMethodWithArgumentsCorrectly(string $method, array $methodArguments, string $expectedReturnedValue)
+    public function testCallsMethodMethodWithArgumentsCorrectly(string $method, array $arguments, string $expectedReturnedValue)
     {
-        $arguments = [
-            $method,
-            $methodArguments,
-        ];
-
-        $actualReturnedValue = $this->callTestedMethod($arguments);
+        $actualReturnedValue = $this->decapsulator->$method($arguments[0], $arguments[1]);
 
         $this->assertEquals($expectedReturnedValue, $actualReturnedValue);
     }

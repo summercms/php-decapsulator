@@ -29,14 +29,14 @@ use Exorg\Decapsulator\ObjectDecapsulator;
 abstract class AbstractObjectDecapsulatorTestCase extends TestCase
 {
     /**
-     * Name of the decapsulated object class.
+     * Full qualified name of the decapsulated object class.
      *
      * @var string
      */
-    private const DECAPSULATED_OBJECT_CLASS = '\Exorg\Decapsulator\ObjectDecapsulator\DemoClass';
+    private const DECAPSULATED_OBJECT_CLASS = '\Exorg\Decapsulator\DemoClass';
 
     /**
-     * Name of dacapsulator class.
+     * Full qualified name of dacapsulator class.
      *
      * @var string
      */
@@ -51,7 +51,6 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     protected \ReflectionClass $decapsulatedObjectReflection;
 
     /**
-     * Decapsulated object.
      * Instance of the fixture class.
      *
      * @see DecapsulatorTest::DECAPSULATED_OBJECT_CLASS
@@ -59,7 +58,7 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     protected object $decapsulatedObject;
 
     /**
-     * Reflection for the testes class.
+     * Reflection for the tested class.
      *
      * @var \ReflectionClass
      */
@@ -71,30 +70,6 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      * @var ObjectDecapsulator
      */
     protected ObjectDecapsulator $decapsulator;
-
-    /**
-     * Call tested method and return result.
-     *
-     * @param string $arguments
-     *
-     * @return mixed
-     */
-    public function callTestedMethod(array $arguments = []): mixed
-    {
-        $result = $this->callDecapsulatorMethod($this->provideTestedMethodName(), $arguments);
-
-        return $result;
-    }
-
-    /**
-     * Provide tested method name.
-     *
-     * @return string $name
-     */
-    protected function provideTestedMethodName(): string
-    {
-        return '';
-    }
 
     /**
      * Initialize reflection for the decapsulated object fixture class.
@@ -134,8 +109,8 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
      */
     protected function setUpDecapsulator(): void
     {
-        $this->setUpDecapsulatedObjectReflectionOfDecapsulator();
-        $this->setUpDecapsualatedObjectOfDecapsulator();
+        $this->setUpDecapsulatedObjectReflectionWithinDecapsulator();
+        $this->setUpDecapsualatedObjectWithinDecapsulator();
     }
 
     /**
@@ -170,30 +145,9 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     }
 
     /**
-     * Call tested class instance public or non-public method.
-     *
-     * @param string $name
-     * @param mixed[] $arguments
-     *
-     * @return mixed
-     */
-    protected function callDecapsulatorMethod(string $name, array $arguments = []): mixed
-    {
-        $argumentsExist = !empty($arguments);
-
-        if ($argumentsExist) {
-            $returnedValue = $this->callDecapsulatorMethodWithArguments($name, $arguments);
-        } else {
-            $returnedValue = $this->callDecapsulatorMethodWithNoArguments($name);
-        }
-
-        return $returnedValue;
-    }
-
-    /**
      * Set up decapsulated object reflection property of tested class instance.
      */
-    private function setUpDecapsulatedObjectReflectionOfDecapsulator(): void
+    private function setUpDecapsulatedObjectReflectionWithinDecapsulator(): void
     {
         $this->setDecapsulatorProperty('reflection', $this->decapsulatedObjectReflection);
     }
@@ -201,41 +155,8 @@ abstract class AbstractObjectDecapsulatorTestCase extends TestCase
     /**
      * Set up decapsulated object instance property of tested class instance.
      */
-    private function setUpDecapsualatedObjectOfDecapsulator(): void
+    private function setUpDecapsualatedObjectWithinDecapsulator(): void
     {
         $this->setDecapsulatorProperty('object', $this->decapsulatedObject);
-    }
-
-    /**
-     * Call tested class instance public or non-public method with no arguments.
-     *
-     * @param string $name
-     *
-     * @return mixed
-     */
-    private function callDecapsulatorMethodWithNoArguments($name): mixed
-    {
-        $method = $this->decapsulatorReflection->getMethod($name);
-        $method->setAccessible(true);
-        $returnedValue = $method->invoke($this->decapsulator);
-
-        return $returnedValue;
-    }
-
-    /**
-     * Call tested class instance public or non-public method with arguments.
-     *
-     * @param string $name
-     * @param mixed[] $arguments
-     *
-     * @return mixed
-     */
-    private function callDecapsulatorMethodWithArguments(string $name, array $arguments): mixed
-    {
-        $method = $this->decapsulatorReflection->getMethod($name);
-        $method->setAccessible(true);
-        $returnedValue = $method->invokeArgs($this->decapsulator, $arguments);
-
-        return $returnedValue;
     }
 }

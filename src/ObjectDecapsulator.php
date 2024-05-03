@@ -89,7 +89,7 @@ class ObjectDecapsulator
     public function __set(string $name, mixed $value): void
     {
         if (! $this->propertyExists($name)) {
-            throw new \InvalidArgumentException('Property does not exist.');
+            throw new \InvalidArgumentException("Property '{$name}' does not exist.");
         }
 
         $this->setProperty($name, $value);
@@ -108,7 +108,7 @@ class ObjectDecapsulator
     public function __get(string $name): mixed
     {
         if (! $this->propertyExists($name)) {
-            throw new \InvalidArgumentException('Property does not exist.');
+            throw new \InvalidArgumentException("Property '{$name}' does not exist.");
         }
 
         $property = $this->getProperty($name);
@@ -130,7 +130,7 @@ class ObjectDecapsulator
     public function __call(string $name, array $arguments): mixed
     {
         if (! $this->methodExists($name)) {
-            throw new \InvalidArgumentException('Method does not exist.');
+            throw new \InvalidArgumentException("Method '{$name}' does not exist.");
         }
 
         $result = $this->callMethod($name, $arguments);

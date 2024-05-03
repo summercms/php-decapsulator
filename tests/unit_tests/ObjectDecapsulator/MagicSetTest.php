@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * Test for setProperty method.
+ * Magic set test.
  * PHPUnit test class for ObjectDecapsulator class.
  *
  * @package Decapsulator
@@ -23,20 +23,25 @@ namespace Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link http://github.com/exorg/decapsulator
  */
-class SetPropertyTest extends AbstractPropertyAccessorsTestCase
+class MagicSetTest extends AbstractPropertyAccessorsTestCase
 {
     /**
-     * Provide tested method name.
-     *
-     * @param string $name
+     * Test __set($name, $value) magic method
+     * throws InvalidObjectException
+     * when the property does not exist.
      */
-    protected function provideTestedMethodName(): string
+    public function testThrowsExceptionWhenPropertyDoesNotExist()
     {
-        return 'setProperty';
+        $property = self::NONEXISTENT_PROPERTY;
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage("Property '{$property}' does not exist.");
+
+        $this->decapsulator->$property = 4;
     }
 
     /**
-     * Test setProperty($name, $value) method
+     * Test __set($name, $value) magic method
      * sets given property value correctly.
      *
      * @dataProvider existingPropertiesProvider
@@ -45,14 +50,8 @@ class SetPropertyTest extends AbstractPropertyAccessorsTestCase
      */
     public function testSetsPropertyCorrectly(string $property)
     {
-        $expectedValue = 1024;
-
-        $arguments = [
-            $property,
-            $expectedValue,
-        ];
-
-        $this->callTestedMethod($arguments);
+        $expectedValue = rand();
+        $this->decapsulator->$property = $expectedValue;
 
         $actualValue = $this->getDecapsulatedObjectProperty($property);
 
