@@ -18,7 +18,7 @@ To contribute to the project you need to have an account on [GitHub](https://git
 
 Please follow [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-12](http://www.php-fig.org/psr/psr-12/) coding standards and [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloading standard.
 
-This project uses [PHPCodeSniffer](https://www.squizlabs.com/php-codesniffer) for detecting coding style issues.
+This project uses [PHPCodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) for detecting coding style issues.
 
 To run tests for code style  write the following command in your command line inside the main DataCoder project directory
 
