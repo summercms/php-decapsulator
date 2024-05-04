@@ -2,7 +2,7 @@ name: PHP Sniff and Unit Test
 
 on:
   push:
-    branches: [ "master", "develop", "issue-17-ci-configuration" ]
+    branches: [ "master", "develop" ]
   pull_request:
     branches: [ "master", "develop" ]
 

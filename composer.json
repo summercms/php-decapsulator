@@ -4,6 +4,7 @@
     "type": "library",
     "keywords": [
         "exorg",
+        "php-decapsulator",
         "decapsulator"
     ],
     "license": "MIT",
