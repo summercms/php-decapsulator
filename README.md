@@ -2,7 +2,7 @@
 
 <!-- ![example workflow](https://github.com/ExOrg/php-decapsulator/actions/workflows/php.yml/badge.svg) -->
 
-Decapsulating objects wrapper. Allows easy access to non-public aproperties and methods.
+Decapsulating objects wrapper. Allows easy access to non-public properties and methods.
 
 ## Getting Started
 
